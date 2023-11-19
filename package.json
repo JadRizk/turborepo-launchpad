@@ -1,4 +1,5 @@
 {
+  "name": "launchpad",
   "private": true,
   "scripts": {
     "build": "turbo run build",
@@ -12,6 +13,5 @@
     "tsconfig": "workspace:*",
     "turbo": "latest"
   },
-  "packageManager": "pnpm@8.9.0",
-  "name": "mudd-app"
+  "packageManager": "pnpm@8.9.0"
 }

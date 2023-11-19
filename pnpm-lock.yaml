@@ -19,6 +19,9 @@ importers:
 
   apps/app:
     dependencies:
+      '@next/eslint-plugin-next':
+        specifier: ^12.3.0
+        version: 12.3.4
       next:
         specifier: 14.0.3
         version: 14.0.3(react-dom@18.2.0)(react@18.2.0)
@@ -510,6 +513,12 @@ packages:
 
   /@next/env@14.0.3:
     resolution: {integrity: sha512-7xRqh9nMvP5xrW4/+L0jgRRX+HoNRGnfJpD+5Wq6/13j3dsdzxO3BCXn7D3hMqsDb+vjZnJq+vI7+EtgrYZTeA==}
+    dev: false
+
+  /@next/eslint-plugin-next@12.3.4:
+    resolution: {integrity: sha512-BFwj8ykJY+zc1/jWANsDprDIu2MgwPOIKxNVnrKvPs+f5TPegrVnem8uScND+1veT4B7F6VeqgaNLFW1Hzl9Og==}
+    dependencies:
+      glob: 7.1.7
     dev: false
 
   /@next/swc-darwin-arm64@14.0.3:
@@ -2788,6 +2797,17 @@ packages:
       minimatch: 3.1.2
       once: 1.4.0
       path-is-absolute: 1.0.1
+
+  /glob@7.1.7:
+    resolution: {integrity: sha512-OvD9ENzPLbegENnYP5UUfJIirTg4+XwMWGaQfQTY0JenxNvvIKP3U3/tAQSPIu/lHxXYSZmpXlUHeqAIdKzBLQ==}
+    dependencies:
+      fs.realpath: 1.0.0
+      inflight: 1.0.6
+      inherits: 2.0.4
+      minimatch: 3.1.2
+      once: 1.4.0
+      path-is-absolute: 1.0.1
+    dev: false
 
   /glob@7.2.3:
     resolution: {integrity: sha512-nFR0zLpU2YCaRxwoCJvL6UvCH2JFyFVIvwTLsIf21AuHlMskA1hhTdk+LlYJtOlYt9v6dvszD2BGRqBL+iQK9Q==}

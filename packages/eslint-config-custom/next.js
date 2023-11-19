@@ -35,8 +35,13 @@ module.exports = {
     },
   },
   ignorePatterns: ["node_modules/", "dist/"],
-  // add rules configurations here
   rules: {
     "import/no-default-export": "off",
+    "unicorn/filename-case": "off",
+
+    "react/jsx-pascal-case": "off",
+    "react/function-component-definition": "off",
+
+    "@typescript-eslint/explicit-function-return-type": "off",
   },
 };
