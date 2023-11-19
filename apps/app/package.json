@@ -11,6 +11,7 @@
   "dependencies": {
     "@next/eslint-plugin-next": "^12.3.0",
     "next": "14.0.3",
+    "next-themes": "^0.2.1",
     "react": "^18",
     "react-dom": "^18",
     "ui": "workspace:*"

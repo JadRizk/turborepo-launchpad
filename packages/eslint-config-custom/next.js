@@ -36,6 +36,7 @@ module.exports = {
   },
   ignorePatterns: ["node_modules/", "dist/"],
   rules: {
+    "import/no-extraneous-dependencies": "off",
     "import/no-default-export": "off",
     "unicorn/filename-case": "off",
 
