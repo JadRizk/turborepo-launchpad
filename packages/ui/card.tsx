@@ -1,27 +1,19 @@
-import * as React from "react";
+import React from 'react';
+import clsx from 'clsx';
 
-export function Card({
-  className,
-  title,
-  children,
-  href,
-}: {
-  className?: string;
+interface CreditCardProps {
   title: string;
   children: React.ReactNode;
-  href: string;
-}): JSX.Element {
-  return (
-    <a
-      className={className}
-      href={`${href}?utm_source=create-turbo&utm_medium=basic&utm_campaign=create-turbo"`}
-      rel="noopener noreferrer"
-      target="_blank"
-    >
-      <h2>
-        {title} <span>-&gt;</span>
-      </h2>
-      <p>{children}</p>
-    </a>
-  );
 }
+
+export const Card: React.FC<CreditCardProps> = ({ title, children }) => {
+  const baseClasses = 'border rounded-lg shadow-dialog p-6 max-w-sm mx-auto';
+  const responsiveClasses = 'w-full md:max-w-md lg:max-w-lg';
+
+  return (
+      <div className={clsx(baseClasses, responsiveClasses)}>
+        <h2 className="text-just20 mb-4">{title}</h2>
+        {children}
+      </div>
+  );
+};

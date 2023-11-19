@@ -1,4 +1,4 @@
 module.exports = {
     reactStrictMode: true,
-    transpilePackages: ["ui", "tailwindconfig"],
+    transpilePackages: ["ui", "tailwind-config"],
 };

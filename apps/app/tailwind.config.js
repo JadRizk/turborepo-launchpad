@@ -1,11 +1,11 @@
-const path = require('path');
-const config = require('tailwind-config/tailwind.config.js');
-
 /** @type {import('tailwindcss').Config} */
+const sharedConfig = require("tailwind-config");
 module.exports = {
-  ...config,
+  ...sharedConfig,
   content: [
-    './src/**/*.{ts,tsx}',
-    path.resolve(__dirname, '../../packages/ui-next/src/**/*.{ts,tsx}'),
+    "./src/pages/**/*.{js,ts,jsx,tsx,mdx}",
+    "./src/components/**/*.{js,ts,jsx,tsx,mdx}",
+    "./src/app/**/*.{js,ts,jsx,tsx,mdx}",
+    "../../packages/ui/**/*.{js,ts,jsx,tsx,mdx}",
   ],
 };
