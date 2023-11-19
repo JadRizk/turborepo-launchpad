@@ -14,12 +14,7 @@ export const LoginDialog: FC = () => {
   return (
     <Dialog>
       <DialogTrigger asChild>
-        <Button
-          className={cn(
-            buttonVariants({ variant: "secondary", size: "sm" }),
-            "px-4",
-          )}
-        >
+        <Button className={cn(buttonVariants({ size: "sm" }), "px-4")}>
           Login
         </Button>
       </DialogTrigger>

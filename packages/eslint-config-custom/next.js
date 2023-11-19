@@ -39,6 +39,7 @@ module.exports = {
     "import/no-extraneous-dependencies": "off",
     "import/no-default-export": "off",
     "unicorn/filename-case": "off",
+    "react/button-has-type": "off",
 
     "react/jsx-pascal-case": "off",
     "react/function-component-definition": "off",

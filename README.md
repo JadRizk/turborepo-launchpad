@@ -26,7 +26,7 @@ Dive into a world of efficiency with these pre-configured goodies:
 ### 🌐 Apps and Packages Galore!
 
 - `app`: a sleek [Next.js](https://nextjs.org/) app for your web app.
-- `ui`: a shared React component library powering both `web` and `docs`.
+- `ui`: a shared React component library powering all the apps.
 - `tailwind-config`: a shared [Tailwind CSS](https://tailwindcss.com/) configuration for consistent styling across
   apps and libraries.
 - `eslint-config-custom`: Keep your code clean with custom `eslint` configurations, including `eslint-config-next`
