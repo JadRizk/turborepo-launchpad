@@ -13,13 +13,14 @@ export const metadata: Metadata = {
 
 // TODO: Add global providers over here
 const RootLayout = ({ children }: { children: React.ReactNode }) => (
-  <html lang="en">
+  <html lang="en" suppressHydrationWarning>
     <body className={inter.className}>
       <ThemeProvider
         attribute="class"
         defaultTheme="system"
         disableTransitionOnChange
         enableSystem
+        storageKey="theme"
       >
         {children}
       </ThemeProvider>
