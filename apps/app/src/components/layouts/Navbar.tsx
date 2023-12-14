@@ -24,7 +24,7 @@ export const NavBar: FC<NavbarProps> = () => {
   };
 
   return (
-    <nav className="py-4 md:py-6 bg-white dark:bg-black text-black dark:text-white">
+    <nav className="py-4 md:py-6 text-black dark:text-white">
       <div className="max-w-6xl mx-auto flex justify-between items-center">
         <Icons.logo />
 
