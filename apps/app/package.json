@@ -10,10 +10,14 @@
   },
   "dependencies": {
     "@next/eslint-plugin-next": "^12.3.0",
+    "@supabase/auth-helpers-nextjs": "^0.8.7",
+    "@supabase/ssr": "^0.0.10",
+    "@supabase/supabase-js": "^2.38.5",
     "next": "14.0.3",
     "next-themes": "^0.2.1",
     "react": "^18",
     "react-dom": "^18",
+    "react-hook-form": "^7.48.2",
     "ui": "workspace:*"
   },
   "devDependencies": {

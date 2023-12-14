@@ -3,18 +3,24 @@
 import type { FC } from "react";
 import { useState } from "react";
 import Link from "next/link";
-import { Icons } from "ui";
-import { LoginDialog } from "../../modules/auth/components/LoginDialog";
+import { Button, buttonVariants, cn, Icons } from "ui";
+import { useRouter } from "next/navigation";
 
 interface NavbarProps {
   children?: React.ReactNode;
 }
 
 export const NavBar: FC<NavbarProps> = () => {
+  const { push } = useRouter();
+
   const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
 
   const toggleMobileMenu = () => {
     setIsMobileMenuOpen(!isMobileMenuOpen);
+  };
+
+  const onLoginClick = () => {
+    push("/login");
   };
 
   return (
@@ -29,7 +35,12 @@ export const NavBar: FC<NavbarProps> = () => {
           <Link className="hover:underline" href="/">
             About
           </Link>
-          <LoginDialog />
+          <Button
+            className={cn(buttonVariants({ size: "sm" }), "px-4")}
+            onClick={onLoginClick}
+          >
+            Login
+          </Button>
         </div>
 
         <button className="md:hidden" onClick={toggleMobileMenu}>
@@ -58,12 +69,12 @@ export const NavBar: FC<NavbarProps> = () => {
               </Link>
             </div>
 
-            <div className="flex flex-col self-center max-w-sm text-center">
-              <LoginDialog />
-              <p className="mt-3 text-sm text-gray-600 dark:text-gray-300">
-                Logging in unlocks more than your account 🗝️✨
-              </p>
-            </div>
+            <Button
+              className={cn(buttonVariants({ size: "sm" }), "px-4")}
+              onClick={onLoginClick}
+            >
+              Login
+            </Button>
           </div>
         </div>
       </div>

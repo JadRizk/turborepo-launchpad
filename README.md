@@ -78,6 +78,16 @@ then:
 npx turbo link
 ```
 
+## 🙏 Acknowledgments
+
+This project has been inspired and influenced by several amazing open-source repositories. A special thanks to the
+maintainers and contributors of these projects:
+
+- [shadcn-ui/taxonomy](https://github.com/shadcn-ui/taxonomy): For providing valuable insights and approaches in UI
+  taxonomy that helped shape our project.
+
+Your support and open-source contributions have been invaluable in making this project a reality!
+
 ## 📚 Learn More and Stay Turbocharged!
 
 Fuel your knowledge about Turborepo with these resources:

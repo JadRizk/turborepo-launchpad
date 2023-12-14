@@ -2,7 +2,7 @@ import type { ReactNode } from "react";
 import { NavBar } from "../../components/layouts/Navbar";
 import { ThemeToggle } from "../../components/layouts/ThemeToggle";
 
-const RootLayout = ({ children }: { children: ReactNode }) => {
+const LandingLayout = ({ children }: { children: ReactNode }) => {
   return (
     <div className="flex min-h-screen flex-col">
       <header className="container bg-background">
@@ -23,4 +23,4 @@ const RootLayout = ({ children }: { children: ReactNode }) => {
   );
 };
 
-export default RootLayout;
+export default LandingLayout;

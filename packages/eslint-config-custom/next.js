@@ -44,8 +44,13 @@ module.exports = {
     "react/jsx-pascal-case": "off",
     "react/function-component-definition": "off",
 
+    "@typescript-eslint/consistent-type-definitions": "off",
     "@typescript-eslint/no-unsafe-argument": "off",
     "@typescript-eslint/no-unsafe-call": "off",
     "@typescript-eslint/explicit-function-return-type": "off",
+    "@typescript-eslint/no-non-null-assertion": "off",
+    "@typescript-eslint/unbound-method": "off",
+    "@typescript-eslint/no-misused-promises": "off",
+    "@typescript-eslint/require-await": "off",
   },
 };

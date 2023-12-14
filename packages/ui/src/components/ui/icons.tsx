@@ -9,6 +9,7 @@ import {
   CreditCard,
   File,
   FileText,
+  Github,
   HelpCircle,
   Image,
   Laptop,
@@ -51,6 +52,7 @@ export const Icons = {
   moon: Moon,
   laptop: Laptop,
   twitter: Twitter,
+  github: Github,
   check: Check,
   menu: Menu,
 };
