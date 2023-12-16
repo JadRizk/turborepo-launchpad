@@ -5,17 +5,15 @@ import { ThemeToggle } from "../../components/layouts/ThemeToggle";
 const LandingLayout = ({ children }: { children: ReactNode }) => {
   return (
     <div className="flex min-h-screen flex-col">
-      <header className="container bg-background">
+      <header className="container">
         <NavBar />
       </header>
       <main className="flex-1">{children}</main>
-      <footer>
-        <div className="container flex flex-col items-center justify-between gap-4 py-4 sm:py-10 sm:h-12 sm:flex-row">
-          <div className="flex flex-col items-center gap-4 px-8 sm:flex-row sm:gap-2 sm:px-0">
-            <p className="text-center text-sm leading-loose sm:text-left">
-              Built by le_twix.
-            </p>
-          </div>
+      <footer className="container">
+        <div className="py-4 md:py-6 max-w-6xl mx-auto flex justify-between items-center">
+          <p className="text-center text-sm leading-loose sm:text-left">
+            Built by le_twix.
+          </p>
           <ThemeToggle />
         </div>
       </footer>
