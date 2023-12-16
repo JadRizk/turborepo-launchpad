@@ -1,13 +1,12 @@
 "use client";
 
-import type { FC } from "react";
+import type { FC, ReactNode } from "react";
 import { useState } from "react";
-import Link from "next/link";
 import { Button, buttonVariants, cn, Icons } from "ui";
 import { useRouter } from "next/navigation";
 
 interface NavbarProps {
-  children?: React.ReactNode;
+  children?: ReactNode;
 }
 
 export const NavBar: FC<NavbarProps> = () => {
@@ -29,12 +28,6 @@ export const NavBar: FC<NavbarProps> = () => {
         <Icons.logo />
 
         <div className="hidden md:flex space-x-6 items-center">
-          <Link className="hover:underline" href="/">
-            Features
-          </Link>
-          <Link className="hover:underline" href="/">
-            About
-          </Link>
           <Button
             className={cn(buttonVariants({ size: "sm" }), "px-4")}
             onClick={onLoginClick}
@@ -48,7 +41,7 @@ export const NavBar: FC<NavbarProps> = () => {
         </button>
 
         <div
-          className={`fixed inset-0 z-50 bg-white dark:bg-black p-8 transform transition duration-500 ease-in-out ${
+          className={`fixed inset-0 z-50 p-8 transform transition duration-500 ease-in-out backdrop-filter backdrop-blur-lg  bg-opacity-30 ${
             isMobileMenuOpen ? "translate-x-0" : "translate-x-full"
           }`}
         >
@@ -60,20 +53,23 @@ export const NavBar: FC<NavbarProps> = () => {
           </button>
 
           <div className="flex flex-col h-full justify-between">
-            <div className="space-y-6">
-              <Link className="block text-2xl hover:underline" href="/">
-                Features
-              </Link>
-              <Link className="block text-2xl hover:underline" href="/">
-                About
-              </Link>
+            <div className="flex flex-col gap-6">
+              <div className="flex flex-col gap-y-2 text-center">
+                <Icons.logo className="mx-auto h-6 w-6" />
+                <h2 className="text-xl font-semibold tracking-tight">
+                  Welcome to Your Portal
+                </h2>
+                <p className="text-sm text-muted-foreground">
+                  Please enter your credentials to access exclusive features and
+                  content.
+                </p>
+              </div>
             </div>
-
             <Button
               className={cn(buttonVariants({ size: "sm" }), "px-4")}
               onClick={onLoginClick}
             >
-              Login
+              Sign In
             </Button>
           </div>
         </div>
