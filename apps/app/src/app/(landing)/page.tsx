@@ -14,19 +14,9 @@ const Page: NextPage = () => {
             I&apos;m building a web app with Next.js 13 and open sourcing
             everything. Follow along as we figure this out together.
           </p>
-          <div className="space-x-4">
-            <Link className={cn(buttonVariants({ size: "lg" }))} href="/login">
-              Get Started
-            </Link>
-            <Link
-              className={cn(buttonVariants({ variant: "outline", size: "lg" }))}
-              href="#"
-              rel="noreferrer"
-              target="_blank"
-            >
-              GitHub
-            </Link>
-          </div>
+          <Link className={cn(buttonVariants({ size: "lg" }))} href="/login">
+            Get Started
+          </Link>
         </div>
       </section>
       <section className="container space-y-6 bg-slate-50 py-8 dark:bg-transparent md:py-12 lg:py-24">
