@@ -3,8 +3,9 @@
 import type { FC } from "react";
 import { useTransition } from "react";
 import { useForm } from "react-hook-form";
-import { Button, buttonVariants, cn, Icons, Input, Label } from "ui";
-import { signInWithEmailAndPassword } from "../../../app/(auth)/actions";
+import { Button, buttonVariants, cn, Icons, Input, Label, useToast } from "ui";
+import { redirect } from "next/navigation";
+import { signInWithEmailAndPassword } from "../../../app/auth/actions";
 
 export type LoginEmailAndPasswordFormValues = {
   email: string;
@@ -13,6 +14,7 @@ export type LoginEmailAndPasswordFormValues = {
 
 export const LoginWithEmailAndPasswordAuthForm: FC = () => {
   const [isPending, startTransition] = useTransition();
+  const { toast } = useToast();
 
   const {
     register,
@@ -20,9 +22,17 @@ export const LoginWithEmailAndPasswordAuthForm: FC = () => {
     formState: { errors },
   } = useForm<LoginEmailAndPasswordFormValues>();
 
-  const onSubmit = (data: LoginEmailAndPasswordFormValues) => {
+  const onSubmit = (formValues: LoginEmailAndPasswordFormValues) => {
     startTransition(async () => {
-      await signInWithEmailAndPassword(data);
+      const { error } = await signInWithEmailAndPassword(formValues);
+
+      if (error) {
+        toast({ title: error.message, variant: "destructive" });
+        return;
+      }
+
+      toast({ title: "Success" });
+      redirect("/app");
     });
   };
 

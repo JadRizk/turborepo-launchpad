@@ -2,8 +2,14 @@ import type { ReactNode } from "react";
 import { buttonVariants, cn, Icons } from "ui";
 import React from "react";
 import Link from "next/link";
+import { redirect } from "next/navigation";
+import { getCurrentUser } from "../app/actions/user";
 
-const AuthLayout = ({ children }: { children: ReactNode }) => {
+const AuthLayout = async ({ children }: { children: ReactNode }) => {
+  const user = await getCurrentUser();
+
+  if (user) return redirect("/app");
+
   return (
     <div className="container flex h-screen w-screen flex-col items-center justify-center lg:max-w-none lg:grid-cols-2 lg:px-0">
       <Link

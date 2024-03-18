@@ -2,6 +2,7 @@ import type { Metadata } from "next";
 import { Inter } from "next/font/google";
 import "../styles/globals.css";
 import React from "react";
+import { Toaster } from "ui";
 import { ThemeProvider } from "../components/layouts/ThemeProvider";
 
 const inter = Inter({ subsets: ["latin"] });
@@ -29,6 +30,7 @@ const RootLayout = ({ children }: { children: React.ReactNode }) => (
         storageKey="theme"
       >
         {children}
+        <Toaster />
       </ThemeProvider>
     </body>
   </html>

@@ -1,8 +1,13 @@
 import type { ReactNode } from "react";
+import { redirect } from "next/navigation";
 import { NavBar } from "../../components/layouts/Navbar";
 import { ThemeToggle } from "../../components/layouts/ThemeToggle";
+import { getCurrentUser } from "../app/actions/user";
 
-const LandingLayout = ({ children }: { children: ReactNode }) => {
+const LandingLayout = async ({ children }: { children: ReactNode }) => {
+  const user = await getCurrentUser();
+
+  if (user) return redirect("/app");
   return (
     <div className="flex min-h-screen flex-col">
       <header className="container">
