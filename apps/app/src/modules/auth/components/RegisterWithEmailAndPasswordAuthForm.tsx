@@ -4,7 +4,7 @@ import type { FC } from "react";
 import { useTransition } from "react";
 import { useForm } from "react-hook-form";
 import { Button, buttonVariants, cn, Icons, Input, Label } from "ui";
-import { signUpWithEmailAndPassword } from "../../../app/(auth)/actions";
+import { signUpWithEmailAndPassword } from "../../../app/auth/actions";
 
 export type RegisterEmailAndPasswordFormValues = {
   email: string;

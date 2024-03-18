@@ -17,7 +17,7 @@ const Page: NextPage = () => {
       <p className="px-8 text-center text-sm text-muted-foreground">
         <Link
           className="hover:text-brand underline underline-offset-4"
-          href="/login"
+          href="/auth/login"
         >
           Have an account? Sign In
         </Link>

@@ -19,13 +19,15 @@ export const NavBar: FC<NavbarProps> = () => {
   };
 
   const onLoginClick = () => {
-    push("/login");
+    push("/auth/login");
   };
 
   return (
     <nav className="py-4 md:py-6 text-black dark:text-white">
       <div className="max-w-6xl mx-auto flex justify-between items-center">
-        <Icons.logo />
+        <a href="/">
+          <Icons.logo />
+        </a>
 
         <div className="hidden md:flex space-x-6 items-center">
           <Button

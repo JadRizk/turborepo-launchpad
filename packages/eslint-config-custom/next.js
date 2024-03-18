@@ -52,5 +52,7 @@ module.exports = {
     "@typescript-eslint/unbound-method": "off",
     "@typescript-eslint/no-misused-promises": "off",
     "@typescript-eslint/require-await": "off",
+
+    "turbo/no-undeclared-env-vars": "off",
   },
 };
