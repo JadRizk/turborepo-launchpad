@@ -31,7 +31,7 @@ export const LoginWithEmailAndPasswordAuthForm: FC = () => {
         return;
       }
 
-      toast({ title: "Success" });
+      toast({ title: "Login successful!" });
       redirect("/app");
     });
   };

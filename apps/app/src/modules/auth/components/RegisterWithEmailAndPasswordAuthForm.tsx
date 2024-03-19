@@ -3,7 +3,8 @@
 import type { FC } from "react";
 import { useTransition } from "react";
 import { useForm } from "react-hook-form";
-import { Button, buttonVariants, cn, Icons, Input, Label } from "ui";
+import { Button, buttonVariants, cn, Icons, Input, Label, toast } from "ui";
+import { redirect } from "next/navigation";
 import { signUpWithEmailAndPassword } from "../../../app/auth/actions";
 
 export type RegisterEmailAndPasswordFormValues = {
@@ -21,9 +22,17 @@ export const RegisterWithEmailAndPasswordAuthForm: FC = () => {
     formState: { errors },
   } = useForm<RegisterEmailAndPasswordFormValues>();
 
-  const onSubmit = (data: RegisterEmailAndPasswordFormValues) => {
+  const onSubmit = (values: RegisterEmailAndPasswordFormValues) => {
     startTransition(async () => {
-      await signUpWithEmailAndPassword(data);
+      const { error } = await signUpWithEmailAndPassword(values);
+
+      if (error) {
+        toast({ title: error.message, variant: "destructive" });
+        return;
+      }
+
+      toast({ title: "User created!" });
+      redirect("/auth/login");
     });
   };
 
