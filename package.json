@@ -9,9 +9,14 @@
   },
   "devDependencies": {
     "eslint": "^8.48.0",
+    "husky": "^9.0.11",
+    "lint-staged": "^15.2.2",
     "prettier": "^3.0.3",
     "tsconfig": "workspace:*",
     "turbo": "latest"
+  },
+  "lint-staged": {
+    "**/*": "prettier --write \"**/*.{ts,tsx,md}\" --ignore-unknown"
   },
   "packageManager": "pnpm@8.9.0"
 }
