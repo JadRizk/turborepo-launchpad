@@ -2,10 +2,12 @@
 
 import type { FC } from "react";
 import { useTransition } from "react";
-import { useForm } from "react-hook-form";
-import { Button, buttonVariants, cn, Icons, Input, Label, useToast } from "ui";
+import { Button, buttonVariants, cn, Icons, useToast } from "ui";
 import { redirect } from "next/navigation";
 import { signInWithEmailAndPassword } from "../../../app/auth/actions";
+import { FormInputField } from "../../../components/form/FormInputField";
+import { AppForm } from "../../../components/form/AppForm";
+import { loginWithEmailAndPasswordSchema } from "../validations/LoginWithEmailAndPasswordSchema";
 
 export type LoginEmailAndPasswordFormValues = {
   email: string;
@@ -15,12 +17,6 @@ export type LoginEmailAndPasswordFormValues = {
 export const LoginWithEmailAndPasswordAuthForm: FC = () => {
   const [isPending, startTransition] = useTransition();
   const { toast } = useToast();
-
-  const {
-    register,
-    handleSubmit,
-    formState: { errors },
-  } = useForm<LoginEmailAndPasswordFormValues>();
 
   const onSubmit = (formValues: LoginEmailAndPasswordFormValues) => {
     startTransition(async () => {
@@ -38,55 +34,29 @@ export const LoginWithEmailAndPasswordAuthForm: FC = () => {
 
   return (
     <div className="flex flex-col gap-6">
-      <form onSubmit={handleSubmit(onSubmit)}>
+      <AppForm onSubmit={onSubmit} schema={loginWithEmailAndPasswordSchema}>
         <div className="flex flex-col gap-4">
-          <div className="flex flex-col gap-1">
-            <Label className="sr-only" htmlFor="email">
-              Email
-            </Label>
-            <Input
-              autoCapitalize="none"
-              autoComplete="email"
-              autoCorrect="off"
-              disabled={isPending}
-              id="email"
-              placeholder="name@example.com"
-              type="email"
-              {...register("email")}
-            />
-          </div>
-          <div className="flex flex-col gap-1">
-            {errors.email ? (
-              <p className="px-1 text-xs text-red-600">
-                {errors.email.message}
-              </p>
-            ) : null}
-            <Label className="sr-only" htmlFor="email">
-              Password
-            </Label>
-            <Input
-              autoCapitalize="none"
-              autoCorrect="off"
-              disabled={isPending}
-              id="password"
-              placeholder="********"
-              type="password"
-              {...register("password")}
-            />
-            {errors.email ? (
-              <p className="px-1 text-xs text-red-600">
-                {errors.email.message}
-              </p>
-            ) : null}
-          </div>
-          <Button className={cn(buttonVariants())} disabled={isPending}>
+          <FormInputField<LoginEmailAndPasswordFormValues>
+            label="Email"
+            path="email"
+            placeholder="name@example.com"
+          />
+
+          <FormInputField<LoginEmailAndPasswordFormValues>
+            label="Password"
+            path="password"
+            placeholder="********"
+            type="password"
+          />
+          <Button disabled={isPending} type="submit">
             {isPending ? (
               <Icons.spinner className="mr-2 h-4 w-4 animate-spin" />
             ) : null}
             Sign In
           </Button>
         </div>
-      </form>
+      </AppForm>
+
       <div className="relative">
         <div className="absolute inset-0 flex items-center">
           <span className="w-full border-t" />
