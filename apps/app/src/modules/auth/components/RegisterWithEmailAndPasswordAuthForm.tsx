@@ -6,25 +6,21 @@ import { useForm } from "react-hook-form";
 import { Button, buttonVariants, cn, Icons, Input, Label, toast } from "ui";
 import { redirect } from "next/navigation";
 import { signUpWithEmailAndPassword } from "../../../app/auth/actions";
-
-export type RegisterEmailAndPasswordFormValues = {
-  email: string;
-  password: string;
-  confirm: string;
-};
+import { AppForm } from "../../../components/form/AppForm";
+import { FormInputField } from "../../../components/form/FormInputField";
+import type { RegisterEmailAndPasswordFormValues } from "../validations/RegisterWithEmailAndPasswordSchema";
+import { registerWithEmailAndPasswordSchema } from "../validations/RegisterWithEmailAndPasswordSchema";
+import type { LoginEmailAndPasswordFormValues } from "./LoginWithEmailAndPasswordAuthForm";
 
 export const RegisterWithEmailAndPasswordAuthForm: FC = () => {
   const [isPending, startTransition] = useTransition();
 
-  const {
-    register,
-    handleSubmit,
-    formState: { errors },
-  } = useForm<RegisterEmailAndPasswordFormValues>();
-
-  const onSubmit = (values: RegisterEmailAndPasswordFormValues) => {
+  const onSubmit = ({
+    email,
+    password,
+  }: RegisterEmailAndPasswordFormValues) => {
     startTransition(async () => {
-      const { error } = await signUpWithEmailAndPassword(values);
+      const { error } = await signUpWithEmailAndPassword({ email, password });
 
       if (error) {
         toast({ title: error.message, variant: "destructive" });
@@ -38,66 +34,25 @@ export const RegisterWithEmailAndPasswordAuthForm: FC = () => {
 
   return (
     <div className="flex flex-col gap-6">
-      <form onSubmit={handleSubmit(onSubmit)}>
+      <AppForm onSubmit={onSubmit} schema={registerWithEmailAndPasswordSchema}>
         <div className="flex flex-col gap-4">
-          <div className="flex flex-col gap-1">
-            <Label className="sr-only" htmlFor="email">
-              Email
-            </Label>
-            <Input
-              autoCapitalize="none"
-              autoComplete="email"
-              autoCorrect="off"
-              disabled={isPending}
-              id="email"
-              placeholder="name@example.com"
-              type="email"
-              {...register("email")}
-            />
-            {errors.email ? (
-              <p className="px-1 text-xs text-red-600">
-                {errors.email.message}
-              </p>
-            ) : null}
-          </div>
-          <div className="flex flex-col gap-1">
-            <Label className="sr-only" htmlFor="email">
-              Password
-            </Label>
-            <Input
-              autoCapitalize="none"
-              autoCorrect="off"
-              disabled={isPending}
-              id="password"
-              placeholder="********"
-              type="password"
-              {...register("password")}
-            />
-            {errors.password ? (
-              <p className="px-1 text-xs text-red-600">
-                {errors.password.message}
-              </p>
-            ) : null}
-          </div>
-          <div className="flex flex-col gap-1">
-            <Label className="sr-only" htmlFor="email">
-              Confirm Password
-            </Label>
-            <Input
-              autoCapitalize="none"
-              autoCorrect="off"
-              disabled={isPending}
-              id="confirm-password"
-              placeholder="********"
-              type="password"
-              {...register("confirm")}
-            />
-            {errors.confirm ? (
-              <p className="px-1 text-xs text-red-600">
-                {errors.confirm.message}
-              </p>
-            ) : null}
-          </div>
+          <FormInputField<RegisterEmailAndPasswordFormValues>
+            label="Email"
+            path="email"
+            placeholder="name@example.com"
+          />
+          <FormInputField<RegisterEmailAndPasswordFormValues>
+            label="Password"
+            path="password"
+            placeholder="********"
+            type="password"
+          />
+          <FormInputField<RegisterEmailAndPasswordFormValues>
+            label="Confirm password"
+            path="confirmPassword"
+            placeholder="********"
+            type="password"
+          />
           <Button className={cn(buttonVariants())} disabled={isPending}>
             {isPending ? (
               <Icons.spinner className="mr-2 h-4 w-4 animate-spin" />
@@ -105,7 +60,7 @@ export const RegisterWithEmailAndPasswordAuthForm: FC = () => {
             Register
           </Button>
         </div>
-      </form>
+      </AppForm>
       <div className="relative">
         <div className="absolute inset-0 flex items-center">
           <span className="w-full border-t" />
