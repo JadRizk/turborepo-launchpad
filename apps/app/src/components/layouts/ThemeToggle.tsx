@@ -1,8 +1,8 @@
-"use client";
+'use client';
 
-import * as React from "react";
-import { useTheme } from "next-themes";
-import type { FC } from "react";
+import * as React from 'react';
+import { useTheme } from 'next-themes';
+import type { FC } from 'react';
 import {
   Button,
   DropdownMenu,
@@ -10,7 +10,7 @@ import {
   DropdownMenuItem,
   DropdownMenuTrigger,
   Icons,
-} from "ui";
+} from 'ui';
 
 export const ThemeToggle: FC = () => {
   const { setTheme } = useTheme();
@@ -18,30 +18,30 @@ export const ThemeToggle: FC = () => {
   return (
     <DropdownMenu>
       <DropdownMenuTrigger asChild>
-        <Button size="icon" variant="outline">
-          <Icons.sun className="h-[1.2rem] w-[1.2rem] rotate-0 scale-100 transition-all dark:-rotate-90 dark:scale-0" />
-          <Icons.moon className="absolute h-[1.2rem] w-[1.2rem] rotate-90 scale-0 transition-all dark:rotate-0 dark:scale-100" />
-          <span className="sr-only">Toggle theme</span>
+        <Button size='icon' variant='outline'>
+          <Icons.sun className='h-[1.2rem] w-[1.2rem] rotate-0 scale-100 transition-all dark:-rotate-90 dark:scale-0' />
+          <Icons.moon className='absolute h-[1.2rem] w-[1.2rem] rotate-90 scale-0 transition-all dark:rotate-0 dark:scale-100' />
+          <span className='sr-only'>Toggle theme</span>
         </Button>
       </DropdownMenuTrigger>
-      <DropdownMenuContent align="end">
+      <DropdownMenuContent align='end'>
         <DropdownMenuItem
           onClick={() => {
-            setTheme("light");
+            setTheme('light');
           }}
         >
           Light
         </DropdownMenuItem>
         <DropdownMenuItem
           onClick={() => {
-            setTheme("dark");
+            setTheme('dark');
           }}
         >
           Dark
         </DropdownMenuItem>
         <DropdownMenuItem
           onClick={() => {
-            setTheme("system");
+            setTheme('system');
           }}
         >
           System

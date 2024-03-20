@@ -1,4 +1,4 @@
-import type { LucideIcon } from "lucide-react";
+import type { LucideIcon } from 'lucide-react';
 import {
   AlertTriangle,
   ArrowRight,
@@ -25,7 +25,7 @@ import {
   Twitter,
   User,
   X,
-} from "lucide-react";
+} from 'lucide-react';
 
 export type Icon = LucideIcon;
 
