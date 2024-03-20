@@ -1,8 +1,8 @@
-import type { DefaultValues, FieldValues } from "react-hook-form";
-import { FormProvider, useForm } from "react-hook-form";
-import type { Schema } from "zod";
-import { zodResolver } from "@hookform/resolvers/zod";
-import type { ReactNode } from "react";
+import type { DefaultValues, FieldValues } from 'react-hook-form';
+import { FormProvider, useForm } from 'react-hook-form';
+import type { Schema } from 'zod';
+import { zodResolver } from '@hookform/resolvers/zod';
+import type { ReactNode } from 'react';
 
 export type AppFormProps<T extends FieldValues> = {
   onSubmit: (input: T) => void;
@@ -20,7 +20,7 @@ export function AppForm<T extends FieldValues>({
   shouldUnregister = true,
 }: AppFormProps<T>) {
   const methods = useForm<T>({
-    mode: "onChange",
+    mode: 'onChange',
     shouldUseNativeValidation: false,
     defaultValues,
     resolver: zodResolver(schema),
@@ -32,7 +32,7 @@ export function AppForm<T extends FieldValues>({
 
   return (
     <FormProvider {...methods}>
-      <form className="h-full" onSubmit={handleSubmit}>
+      <form className='h-full' onSubmit={handleSubmit}>
         {children}
       </form>
     </FormProvider>

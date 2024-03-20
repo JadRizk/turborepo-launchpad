@@ -1,8 +1,8 @@
-"use server";
+'use server';
 
-import { cookies } from "next/headers";
-import type { CookieOptions } from "@supabase/ssr";
-import { createServerClient } from "@supabase/ssr";
+import { cookies } from 'next/headers';
+import type { CookieOptions } from '@supabase/ssr';
+import { createServerClient } from '@supabase/ssr';
 
 async function createSupabaseServerClient() {
   const cookieStore = cookies();

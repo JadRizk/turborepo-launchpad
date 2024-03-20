@@ -1,12 +1,12 @@
-import type { InputProps } from "ui";
-import { Input } from "ui";
-import type { FieldValues, Path } from "react-hook-form";
-import { useFormContext, useController } from "react-hook-form";
-import { FormFieldset } from "./FormFieldset";
+import type { InputProps } from 'ui';
+import { Input } from 'ui';
+import type { FieldValues, Path } from 'react-hook-form';
+import { useFormContext, useController } from 'react-hook-form';
+import { FormFieldset } from './FormFieldset';
 
 export type FormInputFieldProps<T> = Omit<
   InputProps,
-  "id" | "name" | "invalid" | "readOnly"
+  'id' | 'name' | 'invalid' | 'readOnly'
 > & {
   path: Path<T>;
   label?: string;
@@ -14,7 +14,7 @@ export type FormInputFieldProps<T> = Omit<
 
 export function FormInputField<T extends FieldValues>({
   path,
-  type = "text",
+  type = 'text',
   placeholder,
   label,
   onChange,
@@ -39,12 +39,12 @@ export function FormInputField<T extends FieldValues>({
         type={type}
         {...rest}
         {...register(path, {
-          setValueAs: (value) => {
+          setValueAs: value => {
             if (!value) return null;
             if (
-              type === "number" ||
-              rest.inputMode === "numeric" ||
-              rest.inputMode === "decimal"
+              type === 'number' ||
+              rest.inputMode === 'numeric' ||
+              rest.inputMode === 'decimal'
             ) {
               const output = parseFloat(value);
               return isNaN(output) ? undefined : output;
@@ -54,8 +54,8 @@ export function FormInputField<T extends FieldValues>({
           onChange,
           onBlur,
         })}
-        autoCapitalize="none"
-        autoCorrect="off"
+        autoCapitalize='none'
+        autoCorrect='off'
         disabled={disabled}
       >
         {children}
