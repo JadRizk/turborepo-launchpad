@@ -1,11 +1,11 @@
 import type { Metadata } from "next";
-import { Inter } from "next/font/google";
+import { Oswald } from "next/font/google";
 import "../styles/globals.css";
 import React from "react";
 import { Toaster } from "ui";
 import { ThemeProvider } from "../components/layouts/ThemeProvider";
 
-const inter = Inter({ subsets: ["latin"] });
+const inter = Oswald({ subsets: ["latin"] });
 
 // TODO: update the site metadata
 export const metadata: Metadata = {
