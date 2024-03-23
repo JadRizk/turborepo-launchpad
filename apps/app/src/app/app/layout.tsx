@@ -13,7 +13,11 @@ const AppLayout = async ({ children }: { children: ReactNode }) => {
       <header className='container'>
         <AppNavBar />
       </header>
-      <main className='flex-1'>{children}</main>
+      <main className='flex-1'>
+        <div className='max-w-6xl mx-auto flex justify-between items-center py-4 md:py-6'>
+          <div className='w-full'>{children}</div>
+        </div>
+      </main>
     </div>
   );
 };

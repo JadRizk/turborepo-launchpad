@@ -2,15 +2,13 @@
 
 import type { FC } from 'react';
 import { useTransition } from 'react';
-import { useForm } from 'react-hook-form';
-import { Button, buttonVariants, cn, Icons, Input, Label, toast } from 'ui';
+import { Button, buttonVariants, cn, Icons, toast } from 'ui';
 import { redirect } from 'next/navigation';
 import { signUpWithEmailAndPassword } from '../../../app/auth/actions';
 import { AppForm } from '../../../components/form/AppForm';
 import { FormInputField } from '../../../components/form/FormInputField';
 import type { RegisterEmailAndPasswordFormValues } from '../validations/RegisterWithEmailAndPasswordSchema';
 import { registerWithEmailAndPasswordSchema } from '../validations/RegisterWithEmailAndPasswordSchema';
-import type { LoginEmailAndPasswordFormValues } from './LoginWithEmailAndPasswordAuthForm';
 
 export const RegisterWithEmailAndPasswordAuthForm: FC = () => {
   const [isPending, startTransition] = useTransition();
