@@ -13,7 +13,10 @@ const Page: NextPage = () => {
           I&apos;m building a web app with Next.js 14 and open sourcing
           everything.
         </p>
-        <Link className={cn(buttonVariants({ size: 'lg' }))} href='/auth/login'>
+        <Link
+          className={cn(buttonVariants({ size: 'lg', variant: 'primary' }))}
+          href='/auth/login'
+        >
           Get Started
         </Link>
       </div>
