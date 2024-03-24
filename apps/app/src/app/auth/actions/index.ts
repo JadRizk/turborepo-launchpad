@@ -47,3 +47,19 @@ export async function signInWithEmail(email: string) {
 }
 
 // Todo: Add loginWithGithub
+
+export async function resetPasswordForEmail(email: string) {
+  const supabase = await createSupabaseServerClient();
+
+  return supabase.auth.resetPasswordForEmail(email, {
+    redirectTo: `${process.env.NEXT_APP_URL!}/auth/reset-password`,
+  });
+}
+
+export async function updatePassword(password: string) {
+  const supabase = await createSupabaseServerClient();
+
+  return supabase.auth.updateUser({
+    password,
+  });
+}

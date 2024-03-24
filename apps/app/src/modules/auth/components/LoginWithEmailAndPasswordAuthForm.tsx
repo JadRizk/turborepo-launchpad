@@ -4,15 +4,12 @@ import type { FC } from 'react';
 import { useTransition } from 'react';
 import { Button, Icons, useToast } from 'ui';
 import { redirect } from 'next/navigation';
+import Link from 'next/link';
 import { signInWithEmailAndPassword } from '../../../app/auth/actions';
 import { FormInputField } from '../../../components/form/FormInputField';
 import { AppForm } from '../../../components/form/AppForm';
-import { loginWithEmailAndPasswordSchema } from '../validations/LoginWithEmailAndPasswordSchema';
-
-export type LoginEmailAndPasswordFormValues = {
-  email: string;
-  password: string;
-};
+import type { LoginEmailAndPasswordFormValues } from '../validations';
+import { loginWithEmailAndPasswordSchema } from '../validations';
 
 const LoginWithEmailAndPasswordAuthForm: FC = () => {
   const [isPending, startTransition] = useTransition();
@@ -42,12 +39,22 @@ const LoginWithEmailAndPasswordAuthForm: FC = () => {
             placeholder='name@example.com'
           />
 
-          <FormInputField<LoginEmailAndPasswordFormValues>
-            label='Password'
-            path='password'
-            placeholder='********'
-            type='password'
-          />
+          <div className='flex flex-col gap-1'>
+            <FormInputField<LoginEmailAndPasswordFormValues>
+              label='Password'
+              path='password'
+              placeholder='********'
+              type='password'
+            />
+            <p className='text-right text-xs text-muted-foreground'>
+              <Link
+                className='hover:text-brand hover:underline hover:underline-offset-4'
+                href='/auth/forgot-password'
+              >
+                Forgot your password?
+              </Link>
+            </p>
+          </div>
           <Button disabled={isPending} type='submit'>
             {isPending ? (
               <Icons.spinner className='mr-2 h-4 w-4 animate-spin' />

@@ -1,7 +1,7 @@
 import type { NextPage } from 'next';
 import Link from 'next/link';
 import { Icons } from 'ui';
-import { RegisterWithEmailAndPasswordAuthForm } from '../../../modules/auth/components/RegisterWithEmailAndPasswordAuthForm';
+import { RegisterWithEmailAndPasswordAuthForm } from '../../../../modules/auth/components/RegisterWithEmailAndPasswordAuthForm';
 
 const Page: NextPage = () => {
   return (
