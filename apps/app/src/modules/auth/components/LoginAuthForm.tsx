@@ -41,7 +41,7 @@ export const LoginAuthForm: FC = () => {
         {authFormMapper[currentForm]}
       </Suspense>
 
-      <div>
+      <div className='flex flex-col gap-6'>
         <div className='relative'>
           <div className='absolute inset-0 flex items-center'>
             <span className='w-full border-t' />
@@ -52,15 +52,7 @@ export const LoginAuthForm: FC = () => {
             </span>
           </div>
         </div>
-        <div className='flex flex-col gap-1.5'>
-          <button
-            className={cn(buttonVariants({ variant: 'outline' }))}
-            disabled
-            type='button'
-          >
-            <Icons.github className='mr-2 h-4 w-4' />
-            Github
-          </button>
+        <div className='flex flex-col gap-1'>
           <button
             className={cn(buttonVariants({ variant: 'outline' }))}
             onClick={() => {
@@ -73,6 +65,14 @@ export const LoginAuthForm: FC = () => {
             type='button'
           >
             {isMagicLinkForm ? 'Email / Password' : 'Magic Link'}
+          </button>
+          <button
+            className={cn(buttonVariants({ variant: 'outline' }))}
+            disabled
+            type='button'
+          >
+            <Icons.github className='mr-2 h-4 w-4' />
+            Github
           </button>
         </div>
       </div>

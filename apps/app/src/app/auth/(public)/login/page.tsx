@@ -1,7 +1,7 @@
 import type { NextPage } from 'next';
 import Link from 'next/link';
 import { Icons } from 'ui';
-import { LoginAuthForm } from '../../../modules/auth/components/LoginAuthForm';
+import { LoginAuthForm } from '../../../../modules/auth/components/LoginAuthForm';
 
 const Page: NextPage = () => {
   return (

@@ -4,19 +4,19 @@ import type { FC } from 'react';
 import { useTransition } from 'react';
 import { Button, Icons, useToast } from 'ui';
 import { redirect } from 'next/navigation';
-import { signInWithEmail } from '../../../app/auth/actions';
-import { FormInputField } from '../../../components/form/FormInputField';
+import { resetPasswordForEmail } from '../../../app/auth/actions';
 import { AppForm } from '../../../components/form/AppForm';
 import type { EmailFormValues } from '../validations';
 import { emailFormSchema } from '../validations';
+import { FormInputField } from '../../../components/form/FormInputField';
 
-const LoginWithEmailAuthForm: FC = () => {
+export const ForgotPasswordForm: FC = () => {
   const [isPending, startTransition] = useTransition();
   const { toast } = useToast();
 
   const onSubmit = ({ email }: EmailFormValues) => {
     startTransition(async () => {
-      const { error } = await signInWithEmail(email);
+      const { error } = await resetPasswordForEmail(email);
 
       if (error) {
         toast({ title: error.message, variant: 'destructive' });
@@ -25,9 +25,10 @@ const LoginWithEmailAuthForm: FC = () => {
 
       toast({
         title: 'Check Your Email',
-        description: "We've sent a magic link to your email!",
+        description:
+          "We've sent a password reset link to your email. Please click the link to set a new password.",
       });
-      redirect('/');
+      redirect('/auth/login');
     });
   };
 
@@ -40,15 +41,15 @@ const LoginWithEmailAuthForm: FC = () => {
             path='email'
             placeholder='name@example.com'
           />
-          <Button disabled={isPending} type='submit'>
+
+          <Button disabled={isPending}>
             {isPending ? (
               <Icons.spinner className='mr-2 h-4 w-4 animate-spin' />
             ) : null}
-            Sign In
+            Send Reset Link
           </Button>
         </div>
       </AppForm>
     </div>
   );
 };
-export default LoginWithEmailAuthForm;
