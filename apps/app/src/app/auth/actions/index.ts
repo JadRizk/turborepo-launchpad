@@ -28,4 +28,22 @@ export async function signInWithEmailAndPassword(values: {
   return supabase.auth.signInWithPassword(values);
 }
 
+export const signInWithRecoveryToken = async (code: string) => {
+  const supabase = await createSupabaseServerClient();
+
+  return supabase.auth.exchangeCodeForSession(code);
+};
+
+export async function signInWithEmail(email: string) {
+  const supabase = await createSupabaseServerClient();
+
+  // signup users if not available
+  return supabase.auth.signInWithOtp({
+    email,
+    options: {
+      emailRedirectTo: `${process.env.NEXT_APP_URL!}/auth/welcome`,
+    },
+  });
+}
+
 // Todo: Add loginWithGithub

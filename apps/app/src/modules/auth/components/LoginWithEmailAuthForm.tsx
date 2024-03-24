@@ -4,23 +4,22 @@ import type { FC } from 'react';
 import { useTransition } from 'react';
 import { Button, Icons, useToast } from 'ui';
 import { redirect } from 'next/navigation';
-import { signInWithEmailAndPassword } from '../../../app/auth/actions';
+import { signInWithEmail } from '../../../app/auth/actions';
 import { FormInputField } from '../../../components/form/FormInputField';
 import { AppForm } from '../../../components/form/AppForm';
-import { loginWithEmailAndPasswordSchema } from '../validations/LoginWithEmailAndPasswordSchema';
+import { loginWithEmailSchema } from '../validations/LoginWithEmailAndPasswordSchema';
 
-export type LoginEmailAndPasswordFormValues = {
+export type LoginWithEmailFormValues = {
   email: string;
-  password: string;
 };
 
-const LoginWithEmailAndPasswordAuthForm: FC = () => {
+const LoginWithEmailAuthForm: FC = () => {
   const [isPending, startTransition] = useTransition();
   const { toast } = useToast();
 
-  const onSubmit = (formValues: LoginEmailAndPasswordFormValues) => {
+  const onSubmit = ({ email }: LoginWithEmailFormValues) => {
     startTransition(async () => {
-      const { error } = await signInWithEmailAndPassword(formValues);
+      const { error } = await signInWithEmail(email);
 
       if (error) {
         toast({ title: error.message, variant: 'destructive' });
@@ -34,19 +33,12 @@ const LoginWithEmailAndPasswordAuthForm: FC = () => {
 
   return (
     <div className='flex flex-col gap-6'>
-      <AppForm onSubmit={onSubmit} schema={loginWithEmailAndPasswordSchema}>
+      <AppForm onSubmit={onSubmit} schema={loginWithEmailSchema}>
         <div className='flex flex-col gap-4'>
-          <FormInputField<LoginEmailAndPasswordFormValues>
+          <FormInputField<LoginWithEmailFormValues>
             label='Email'
             path='email'
             placeholder='name@example.com'
-          />
-
-          <FormInputField<LoginEmailAndPasswordFormValues>
-            label='Password'
-            path='password'
-            placeholder='********'
-            type='password'
           />
           <Button disabled={isPending} type='submit'>
             {isPending ? (
@@ -59,4 +51,4 @@ const LoginWithEmailAndPasswordAuthForm: FC = () => {
     </div>
   );
 };
-export default LoginWithEmailAndPasswordAuthForm;
+export default LoginWithEmailAuthForm;
