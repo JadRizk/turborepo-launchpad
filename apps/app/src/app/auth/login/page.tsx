@@ -1,7 +1,7 @@
 import type { NextPage } from 'next';
 import Link from 'next/link';
 import { Icons } from 'ui';
-import { LoginWithEmailAndPasswordAuthForm } from '../../../modules/auth/components/LoginWithEmailAndPasswordAuthForm';
+import { LoginAuthForm } from '../../../modules/auth/components/LoginAuthForm';
 
 const Page: NextPage = () => {
   return (
@@ -13,7 +13,7 @@ const Page: NextPage = () => {
           Enter your email to sign in to your account
         </p>
       </div>
-      <LoginWithEmailAndPasswordAuthForm />
+      <LoginAuthForm />
       <p className='px-8 text-center text-sm text-muted-foreground'>
         <Link
           className='hover:text-brand underline underline-offset-4'

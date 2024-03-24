@@ -3,9 +3,9 @@
 import { useState } from 'react';
 import { Button, cn, Icons } from 'ui';
 import type { NextPage } from 'next';
-import { LoginWithEmailAndPasswordAuthForm } from '../../modules/auth/components/LoginWithEmailAndPasswordAuthForm';
 import { RegisterWithEmailAndPasswordAuthForm } from '../../modules/auth/components/RegisterWithEmailAndPasswordAuthForm';
 import '../../modules/auth/styles/auth.css';
+import { LoginAuthForm } from '../../modules/auth/components/LoginAuthForm';
 
 const Page: NextPage = () => {
   const [signUpMode, setSignUpMode] = useState(false);
@@ -49,7 +49,7 @@ const Page: NextPage = () => {
                   Enter your email to sign in to your account
                 </p>
               </div>
-              <LoginWithEmailAndPasswordAuthForm />
+              <LoginAuthForm />
               <p className='px-8 text-center text-sm text-muted-foreground'>
                 <Button
                   onClick={() => {

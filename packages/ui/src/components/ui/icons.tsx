@@ -1,5 +1,6 @@
 import type { LucideIcon } from 'lucide-react';
 import {
+  ShieldCheck,
   AlertTriangle,
   ArrowRight,
   Check,
@@ -55,4 +56,5 @@ export const Icons = {
   github: Github,
   check: Check,
   menu: Menu,
+  ShieldCheck,
 };
