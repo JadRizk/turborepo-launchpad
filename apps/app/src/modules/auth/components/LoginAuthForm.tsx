@@ -71,7 +71,7 @@ export const LoginAuthForm: FC = () => {
             disabled
             type='button'
           >
-            <Icons.github className='mr-2 h-4 w-4' />
+            <Icons.Github className='mr-2 h-4 w-4' />
             Github
           </button>
         </div>

@@ -42,10 +42,7 @@ export const ForgotPasswordForm: FC = () => {
             placeholder='name@example.com'
           />
 
-          <Button disabled={isPending}>
-            {isPending ? (
-              <Icons.spinner className='mr-2 h-4 w-4 animate-spin' />
-            ) : null}
+          <Button disabled={isPending} loading={isPending} type='submit'>
             Send Reset Link
           </Button>
         </div>
