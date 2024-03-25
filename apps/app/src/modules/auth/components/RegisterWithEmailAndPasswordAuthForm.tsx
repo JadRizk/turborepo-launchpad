@@ -51,7 +51,7 @@ export const RegisterWithEmailAndPasswordAuthForm: FC = () => {
             placeholder='********'
             type='password'
           />
-          <Button disabled={isPending} loading={isPending} type='submit'>
+          <Button loading={isPending} type='submit'>
             Register
           </Button>
         </div>

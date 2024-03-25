@@ -42,7 +42,7 @@ export const ForgotPasswordForm: FC = () => {
             placeholder='name@example.com'
           />
 
-          <Button disabled={isPending} loading={isPending} type='submit'>
+          <Button loading={isPending} type='submit'>
             Send Reset Link
           </Button>
         </div>

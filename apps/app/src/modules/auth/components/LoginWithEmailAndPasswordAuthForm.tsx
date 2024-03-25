@@ -55,7 +55,7 @@ const LoginWithEmailAndPasswordAuthForm: FC = () => {
               </Link>
             </p>
           </div>
-          <Button disabled={isPending} loading={isPending} type='submit'>
+          <Button loading={isPending} type='submit'>
             Sign In
           </Button>
         </div>

@@ -42,7 +42,7 @@ export const ResetPasswordForm: FC = () => {
             placeholder='********'
             type='password'
           />
-          <Button disabled={isPending} loading={isPending} type='submit'>
+          <Button loading={isPending} type='submit'>
             Reset
           </Button>
         </div>
