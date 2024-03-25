@@ -39,7 +39,7 @@ export const NavBar: FC<NavbarProps> = () => {
         </div>
 
         <button className='md:hidden' onClick={toggleMobileMenu}>
-          <span>{!isMobileMenuOpen && <Icons.menu />}</span>
+          <span>{!isMobileMenuOpen && <Icons.Menu />}</span>
         </button>
 
         <div

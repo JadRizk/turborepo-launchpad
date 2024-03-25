@@ -40,10 +40,7 @@ const LoginWithEmailAuthForm: FC = () => {
             path='email'
             placeholder='name@example.com'
           />
-          <Button disabled={isPending} type='submit'>
-            {isPending ? (
-              <Icons.spinner className='mr-2 h-4 w-4 animate-spin' />
-            ) : null}
+          <Button disabled={isPending} loading={isPending} type='submit'>
             Sign In
           </Button>
         </div>

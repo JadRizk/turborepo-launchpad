@@ -51,10 +51,7 @@ export const RegisterWithEmailAndPasswordAuthForm: FC = () => {
             placeholder='********'
             type='password'
           />
-          <Button className={cn(buttonVariants())} disabled={isPending}>
-            {isPending ? (
-              <Icons.spinner className='mr-2 h-4 w-4 animate-spin' />
-            ) : null}
+          <Button disabled={isPending} loading={isPending} type='submit'>
             Register
           </Button>
         </div>
@@ -74,7 +71,7 @@ export const RegisterWithEmailAndPasswordAuthForm: FC = () => {
         disabled
         type='button'
       >
-        <Icons.github className='mr-2 h-4 w-4' />
+        <Icons.Github className='mr-2 h-4 w-4' />
         Github
       </button>
     </div>
