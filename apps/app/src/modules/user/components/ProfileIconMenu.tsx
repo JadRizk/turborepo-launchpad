@@ -13,9 +13,7 @@ import * as React from 'react';
 import { useRouter } from 'next/navigation';
 import { signOut } from '../../../app/app/actions/user';
 
-type ProfileIconMenuProps = {};
-
-export const ProfileIconMenu: FC<ProfileIconMenuProps> = () => {
+export const ProfileIconMenu: FC = () => {
   const { push } = useRouter();
 
   const onLogout = async () => {

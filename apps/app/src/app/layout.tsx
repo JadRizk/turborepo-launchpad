@@ -1,6 +1,6 @@
 import type { Metadata } from 'next';
 import { Oswald } from 'next/font/google';
-import '../styles/globals.css';
+import 'ui/styles/globals.css';
 import React from 'react';
 import { Toaster } from 'ui';
 import { ThemeProvider } from '../components/layouts/ThemeProvider';

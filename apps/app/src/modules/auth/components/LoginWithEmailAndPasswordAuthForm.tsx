@@ -2,7 +2,7 @@
 
 import type { FC } from 'react';
 import { useTransition } from 'react';
-import { Button, Icons, useToast } from 'ui';
+import { Button, useToast } from 'ui';
 import { redirect } from 'next/navigation';
 import Link from 'next/link';
 import { signInWithEmailAndPassword } from '../../../app/auth/actions';
