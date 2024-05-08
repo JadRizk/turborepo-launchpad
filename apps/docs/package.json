@@ -1,0 +1,39 @@
+{
+  "name": "docs",
+  "version": "0.0.1",
+  "type": "module",
+  "private": true,
+  "scripts": {
+    "dev": "storybook dev -p 6006",
+    "build": "storybook build --docs",
+    "preview-storybook": "serve storybook-static",
+    "clean": "rm -rf .turbo && rm -rf node_modules",
+    "lint": "eslint ./stories/*.stories.tsx"
+  },
+  "dependencies": {
+    "@storybook/addon-themes": "^8.0.10",
+    "react": "^18.2.0",
+    "react-dom": "^18.2.0"
+  },
+  "devDependencies": {
+    "@storybook/addon-actions": "^7.6.17",
+    "@storybook/addon-docs": "^7.6.17",
+    "@storybook/addon-essentials": "^7.6.17",
+    "@storybook/addon-links": "^7.6.17",
+    "@storybook/react": "^7.6.17",
+    "@storybook/react-vite": "^7.6.17",
+    "@vitejs/plugin-react": "^4.2.1",
+    "autoprefixer": "^10.4.19",
+    "eslint": "^8.57.0",
+    "eslint-config-custom": "workspace:*",
+    "eslint-plugin-mdx": "^3.1.5",
+    "serve": "^14.2.1",
+    "storybook": "^7.6.17",
+    "tailwind-config": "workspace:*",
+    "tailwindcss": "^3.3.0",
+    "tsconfig": "workspace:*",
+    "typescript": "^5.3.3",
+    "ui": "workspace:*",
+    "vite": "^5.1.4"
+  }
+}

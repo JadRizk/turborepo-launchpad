@@ -1,3 +1,5 @@
+@import url('https://fonts.googleapis.com/css2?family=Manrope:wght@200..800&family=Oswald:wght@200..700&display=swap');
+
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
@@ -69,6 +71,18 @@
 @layer base {
   * {
     @apply border-border;
+
+    --reefGreen-100: #e0fddb;
+    --reefGreen-200: #c0fbb6;
+    --reefGreen-300: #a1f992;
+    --reefGreen-400: #81f76d;
+    --reefGreen-500: #62f549;
+    --reefGreen-600: #4ec43a;
+    --reefGreen-700: #3b932c;
+    --reefGreen-800: #27621d;
+    --reefGreen-900: #14310f;
+
+    @apply font-oswald;
   }
   body {
     @apply bg-background text-foreground;

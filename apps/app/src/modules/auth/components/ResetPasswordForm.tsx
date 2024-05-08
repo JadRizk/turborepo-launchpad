@@ -1,6 +1,6 @@
 import type { FC } from 'react';
-import { useTransition } from 'react';
-import { Button, Icons, useToast } from 'ui';
+import React, { useTransition } from 'react';
+import { Button, useToast } from 'ui';
 import { redirect } from 'next/navigation';
 import { updatePassword } from '../../../app/auth/actions';
 import { AppForm } from '../../../components/form/AppForm';

@@ -3,9 +3,17 @@
   "license": "MIT",
   "version": "0.0.0",
   "private": true,
+  "files": [
+    "library.js",
+    "next.js",
+    "react-internal.js",
+    "storybook.js"
+  ],
   "devDependencies": {
     "@vercel/style-guide": "^5.0.0",
     "eslint-config-turbo": "^1.10.12",
-    "typescript": "^5.2.2"
+    "typescript": "^5.2.2",
+    "eslint-plugin-mdx": "^3.1.5",
+    "eslint-plugin-storybook": "^0.8.0"
   }
 }

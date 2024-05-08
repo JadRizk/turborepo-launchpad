@@ -1,0 +1,47 @@
+import { Canvas, Controls, Meta } from '@storybook/addon-docs';
+import { Button } from 'ui';
+
+import * as ButtonStories from './button.stories.tsx';
+
+<Meta of={ButtonStories} />
+
+# Button Component
+
+The Button component is versatile for multiple applications through the
+selection of styles and sizes, allowing the addition of icons as well.
+
+## Usage
+
+To use the Button, import it from the `ui` package and then use it in your
+project:
+
+<Canvas of={ButtonStories.Basic} />
+
+<Controls of={ButtonStories.Basic} />
+
+### Variants
+
+Here are the different variants you can use with the Button component:
+
+<Canvas>
+  <div className={'flex gap-2 items-center justify-center'}>
+    <Button variant={'default'}>Default</Button>
+    <Button variant={'secondary'}>Secondary</Button>
+    <Button variant={'outline'}>Outline</Button>
+    <Button variant={'destructive'}>Destructive</Button>
+    <Button variant={'ghost'}>Ghost</Button>
+    <Button variant={'link'}>Link</Button>
+  </div>
+</Canvas>
+
+### Sizes
+
+You can choose from three sizes: default, sm, lg:
+
+<Canvas>
+  <div className={'flex gap-2 items-center justify-center'}>
+    <Button size={'sm'}>Small</Button>
+    <Button size={'default'}>Default</Button>
+    <Button size={'lg'}>Large</Button>
+  </div>
+</Canvas>

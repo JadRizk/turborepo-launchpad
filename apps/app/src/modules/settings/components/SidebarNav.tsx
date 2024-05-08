@@ -25,7 +25,7 @@ export function SidebarNav({ items }: SidebarNavProps) {
               : 'hover:bg-transparent hover:underline',
             'justify-start',
           )}
-          href={item.href}
+          href={{ pathname: item.href }}
           key={item.href}
         >
           {item.title}
