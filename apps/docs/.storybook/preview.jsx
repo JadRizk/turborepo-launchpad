@@ -1,7 +1,16 @@
 import 'ui/styles/globals.css';
+import { withThemeByClassName } from '@storybook/addon-themes';
 
 export default {
-  decorators: [Story => <Story />],
+  decorators: [
+    withThemeByClassName({
+      themes: {
+        light: 'light',
+        dark: 'dark',
+      },
+      defaultTheme: 'light',
+    }),
+  ],
   parameters: {
     actions: { argTypesRegex: '^on[A-Z].*' },
     controls: { expanded: true },
