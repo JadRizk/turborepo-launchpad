@@ -19,6 +19,7 @@ export default {
     size: {
       control: 'select',
       options: ['default', 'sm', 'lg', 'icon'],
+      defaultValue: 'default',
     },
     asChild: {
       control: 'boolean',
