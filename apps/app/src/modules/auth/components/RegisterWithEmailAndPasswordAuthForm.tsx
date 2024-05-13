@@ -1,8 +1,8 @@
 'use client';
 
 import type { FC } from 'react';
-import { useTransition } from 'react';
-import { Button, buttonVariants, cn, Icons, toast } from 'ui';
+import { useState } from 'react';
+import { Button, buttonVariants, cn, Icons, useToast } from 'ui';
 import { redirect } from 'next/navigation';
 import { signUpWithEmailAndPassword } from '../../../app/auth/actions';
 import { AppForm } from '../../../components/form/AppForm';
@@ -11,15 +11,18 @@ import type { RegisterEmailAndPasswordFormValues } from '../validations/Register
 import { registerWithEmailAndPasswordSchema } from '../validations/RegisterWithEmailAndPasswordSchema';
 
 export const RegisterWithEmailAndPasswordAuthForm: FC = () => {
-  const [isPending, startTransition] = useTransition();
+  const [isLoading, setIsLoading] = useState(false);
+  const { toast } = useToast();
 
-  const onSubmit = ({
+  const onSubmit = async ({
     email,
     password,
   }: RegisterEmailAndPasswordFormValues) => {
-    startTransition(async () => {
-      const { error } = await signUpWithEmailAndPassword({ email, password });
+    setIsLoading(true);
 
+    const { error } = await signUpWithEmailAndPassword({ email, password });
+
+    try {
       if (error) {
         toast({ title: error.message, variant: 'destructive' });
         return;
@@ -27,7 +30,15 @@ export const RegisterWithEmailAndPasswordAuthForm: FC = () => {
 
       toast({ title: 'User created!' });
       redirect('/auth/login');
-    });
+    } catch (err) {
+      toast({
+        title: 'Error',
+        description: 'An unexpected error occurred. Please try again.',
+        variant: 'destructive',
+      });
+    } finally {
+      setIsLoading(false);
+    }
   };
 
   return (
@@ -51,7 +62,7 @@ export const RegisterWithEmailAndPasswordAuthForm: FC = () => {
             placeholder='********'
             type='password'
           />
-          <Button loading={isPending} type='submit'>
+          <Button loading={isLoading} type='submit'>
             Register
           </Button>
         </div>

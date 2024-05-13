@@ -1,5 +1,5 @@
 import type { FC } from 'react';
-import React, { useTransition } from 'react';
+import React, { useState } from 'react';
 import { Button, useToast } from 'ui';
 import { redirect } from 'next/navigation';
 import { updatePassword } from '../../../app/auth/actions';
@@ -9,21 +9,36 @@ import { resetPasswordSchema } from '../validations/ResetPasswordSchema';
 import { FormInputField } from '../../../components/form/FormInputField';
 
 export const ResetPasswordForm: FC = () => {
-  const [isPending, startTransition] = useTransition();
+  const [isLoading, setIsLoading] = useState(false);
   const { toast } = useToast();
 
-  const onSubmit = ({ password }: ResetPasswordFormValues) => {
-    startTransition(async () => {
-      const { error } = await updatePassword(password);
+  const onSubmit = async ({ password }: ResetPasswordFormValues) => {
+    setIsLoading(true);
+    const { error } = await updatePassword(password);
 
+    try {
       if (error) {
-        toast({ title: error.message, variant: 'destructive' });
+        toast({
+          title: error.message,
+          variant: 'destructive',
+        });
         return;
       }
 
-      toast({ title: 'Password updated!' });
+      toast({
+        title: 'Password updated!',
+        description: 'Your password has been successfully updated.',
+      });
       redirect('/');
-    });
+    } catch (err) {
+      toast({
+        title: 'Error',
+        description: 'An unexpected error occurred. Please try again.',
+        variant: 'destructive',
+      });
+    } finally {
+      setIsLoading(false);
+    }
   };
 
   return (
@@ -42,7 +57,7 @@ export const ResetPasswordForm: FC = () => {
             placeholder='********'
             type='password'
           />
-          <Button loading={isPending} type='submit'>
+          <Button loading={isLoading} type='submit'>
             Reset
           </Button>
         </div>

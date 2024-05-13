@@ -1,8 +1,8 @@
 'use client';
 
 import type { FC } from 'react';
-import { useTransition } from 'react';
-import { Button, toast } from 'ui';
+import { useState } from 'react';
+import { Button, useToast } from 'ui';
 import { z } from 'zod';
 import { AppForm } from '../../../components/form/AppForm';
 import { FormInputField } from '../../../components/form/FormInputField';
@@ -23,19 +23,30 @@ const updateUserFormSchema = z.object({
 type UpdateUserFormValues = z.infer<typeof updateUserFormSchema>;
 
 export const UpdateUserForm: FC = () => {
-  const [isPending, startTransition] = useTransition();
+  const [isLoading, setIsLoading] = useState(false);
+  const { toast } = useToast();
 
-  const onSubmit = (data: UpdateUserFormValues) => {
-    startTransition(async () => {
-      const { error } = await updateUser(data);
+  const onSubmit = async (data: UpdateUserFormValues) => {
+    setIsLoading(true);
 
+    const { error } = await updateUser(data);
+
+    try {
       if (error) {
         toast({ title: error.message, variant: 'destructive' });
         return;
       }
 
       toast({ title: 'User updated!' });
-    });
+    } catch (err) {
+      toast({
+        title: 'Error',
+        description: 'An unexpected error occurred. Please try again.',
+        variant: 'destructive',
+      });
+    } finally {
+      setIsLoading(false);
+    }
   };
 
   return (
@@ -43,7 +54,7 @@ export const UpdateUserForm: FC = () => {
       <div className='flex flex-col gap-4'>
         <FormInputField label='Phone' path='phone' />
         <div>
-          <Button disabled={isPending} type='submit'>
+          <Button disabled={isLoading} type='submit'>
             Save
           </Button>
         </div>
