@@ -1,7 +1,7 @@
 'use client';
 
 import type { FC } from 'react';
-import { useTransition } from 'react';
+import { useState } from 'react';
 import { Button, useToast } from 'ui';
 import { redirect } from 'next/navigation';
 import { signInWithEmail } from '../../../app/auth/actions';
@@ -11,13 +11,15 @@ import type { EmailFormValues } from '../validations';
 import { emailFormSchema } from '../validations';
 
 const LoginWithEmailAuthForm: FC = () => {
-  const [isPending, startTransition] = useTransition();
+  const [isLoading, setIsLoading] = useState(false);
   const { toast } = useToast();
 
-  const onSubmit = ({ email }: EmailFormValues) => {
-    startTransition(async () => {
-      const { error } = await signInWithEmail(email);
+  const onSubmit = async ({ email }: EmailFormValues) => {
+    setIsLoading(true);
 
+    const { error } = await signInWithEmail(email);
+
+    try {
       if (error) {
         toast({ title: error.message, variant: 'destructive' });
         return;
@@ -28,7 +30,15 @@ const LoginWithEmailAuthForm: FC = () => {
         description: "We've sent a magic link to your email!",
       });
       redirect('/');
-    });
+    } catch (err) {
+      toast({
+        title: 'Error',
+        description: 'An unexpected error occurred. Please try again.',
+        variant: 'destructive',
+      });
+    } finally {
+      setIsLoading(false);
+    }
   };
 
   return (
@@ -40,7 +50,7 @@ const LoginWithEmailAuthForm: FC = () => {
             path='email'
             placeholder='name@example.com'
           />
-          <Button loading={isPending} type='submit'>
+          <Button loading={isLoading} type='submit'>
             Sign In
           </Button>
         </div>

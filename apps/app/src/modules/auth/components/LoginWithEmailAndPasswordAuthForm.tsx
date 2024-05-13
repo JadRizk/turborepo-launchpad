@@ -1,7 +1,7 @@
 'use client';
 
 import type { FC } from 'react';
-import { useTransition } from 'react';
+import { useState } from 'react';
 import { Button, useToast } from 'ui';
 import { redirect } from 'next/navigation';
 import Link from 'next/link';
@@ -12,13 +12,15 @@ import type { LoginEmailAndPasswordFormValues } from '../validations';
 import { loginWithEmailAndPasswordSchema } from '../validations';
 
 const LoginWithEmailAndPasswordAuthForm: FC = () => {
-  const [isPending, startTransition] = useTransition();
+  const [isLoading, setIsLoading] = useState(false);
   const { toast } = useToast();
 
-  const onSubmit = (formValues: LoginEmailAndPasswordFormValues) => {
-    startTransition(async () => {
-      const { error } = await signInWithEmailAndPassword(formValues);
+  const onSubmit = async (formValues: LoginEmailAndPasswordFormValues) => {
+    setIsLoading(true);
 
+    const { error } = await signInWithEmailAndPassword(formValues);
+
+    try {
       if (error) {
         toast({ title: error.message, variant: 'destructive' });
         return;
@@ -26,7 +28,15 @@ const LoginWithEmailAndPasswordAuthForm: FC = () => {
 
       toast({ title: 'Login successful!' });
       redirect('/app');
-    });
+    } catch (err) {
+      toast({
+        title: 'Error',
+        description: 'An unexpected error occurred. Please try again.',
+        variant: 'destructive',
+      });
+    } finally {
+      setIsLoading(false);
+    }
   };
 
   return (
@@ -55,7 +65,7 @@ const LoginWithEmailAndPasswordAuthForm: FC = () => {
               </Link>
             </p>
           </div>
-          <Button loading={isPending} type='submit'>
+          <Button loading={isLoading} type='submit'>
             Sign In
           </Button>
         </div>
