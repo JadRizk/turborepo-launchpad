@@ -1,0 +1,37 @@
+name: Pull Request
+
+on: [pull_request]
+
+jobs:
+  pull_request:
+    runs-on: ubuntu-latest
+    timeout-minutes: 15
+
+    env:
+      NEXT_APP_URL: test
+      SUPABASE_URL: test
+      SUPABASE_ANON_KEY: test
+
+    steps:
+      - name: ⬇️ Checkout Repo
+        uses: actions/checkout@v4
+
+      - name: 🥡 Install PNPM
+        uses: pnpm/action-setup@v3
+        with:
+          version: 8
+
+      - name: 🟢 Setup Node.js 20.x
+        uses: actions/setup-node@v4
+        with:
+          node-version: 20
+          cache: 'pnpm'
+
+      - name: 🧩 Install Dependencies
+        run: pnpm install
+
+      - name: 🔍 Run Linting
+        run: pnpm run lint
+
+      - name: 📝 Run Formatting
+        run: pnpm run format
