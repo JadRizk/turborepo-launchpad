@@ -1,5 +1,7 @@
 import type { Meta, StoryObj } from '@storybook/react';
+import type { ToastProps } from 'ui';
 import { Button, Toast, Toaster, useToast } from 'ui';
+import type { FC } from 'react';
 import React from 'react';
 
 export default {
@@ -23,25 +25,22 @@ export default {
 
 type ToastStory = StoryObj<React.ComponentProps<typeof Toast>>;
 
+export const DefaultToast: FC<ToastProps> = ({ title, variant }) => {
+  const { toast } = useToast();
+
+  return (
+    <div>
+      <Button onClick={() => toast({ title, variant })} variant='outline'>
+        Show toast
+      </Button>
+      <Toaster />
+    </div>
+  );
+};
 export const SingleToast: ToastStory = {
   name: 'SingleToast',
   args: { title: 'This is a toast message', variant: 'default' },
-
-  render: args => {
-    const { toast } = useToast();
-
-    return (
-      <div>
-        <Button
-          onClick={() => toast({ title: args.title, variant: args.variant })}
-          variant='outline'
-        >
-          Show toast
-        </Button>
-        <Toaster />
-      </div>
-    );
-  },
+  render: args => <DefaultToast {...args} />,
 };
 
 SingleToast.args = {
