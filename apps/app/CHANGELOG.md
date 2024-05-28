@@ -1,5 +1,14 @@
 # app
 
+## 0.0.2
+
+### Patch Changes
+
+- [#19](https://github.com/JadRizk/turborepo-launchpad/pull/19)
+  [`547690f`](https://github.com/JadRizk/turborepo-launchpad/commit/547690f3ad58252028fc8129c20a75f2d197f388)
+  Thanks [@JadRizk](https://github.com/JadRizk)! - Fix local authentication
+  issue
+
 ## 0.0.1
 
 ### Patch Changes
