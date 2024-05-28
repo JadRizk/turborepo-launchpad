@@ -59,8 +59,8 @@ for Supabase authentication. Create a .env.local file at the root of your
 project and include the following:
 
 ```sh
-NEXT_PUBLIC_SUPABASE_URL=your_supabase_url
-NEXT_PUBLIC_SUPABASE_ANON_KEY=your_supabase_anon_key
+SUPABASE_URL=your_supabase_url
+SUPABASE_ANON_KEY=your_supabase_anon_key
 ```
 
 For more information on setting up Supabase, visit the
