@@ -1,5 +1,5 @@
 import type { ReactNode } from 'react';
-import React from 'react';
+import React, { Suspense } from 'react';
 import Link from 'next/link';
 import { buttonVariants, cn, Icons } from 'ui';
 
@@ -15,7 +15,10 @@ const AuthLayout = async ({ children }: { children: ReactNode }) => {
       >
         <Icons.close className='h-6 w-6' />
       </Link>
-      <div className='w-full lg:p-8'>{children}</div>
+
+      <Suspense>
+        <div className='w-full lg:p-8'>{children}</div>
+      </Suspense>
     </div>
   );
 };

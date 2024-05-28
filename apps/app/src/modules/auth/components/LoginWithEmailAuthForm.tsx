@@ -3,7 +3,7 @@
 import type { FC } from 'react';
 import { useState } from 'react';
 import { Button, useToast } from 'ui';
-import { redirect } from 'next/navigation';
+import { useRouter } from 'next/navigation';
 import { signInWithEmail } from '../../../app/auth/actions';
 import { FormInputField } from '../../../components/form/FormInputField';
 import { AppForm } from '../../../components/form/AppForm';
@@ -13,6 +13,7 @@ import { emailFormSchema } from '../validations';
 const LoginWithEmailAuthForm: FC = () => {
   const [isLoading, setIsLoading] = useState(false);
   const { toast } = useToast();
+  const { push } = useRouter();
 
   const onSubmit = async ({ email }: EmailFormValues) => {
     setIsLoading(true);
@@ -29,7 +30,7 @@ const LoginWithEmailAuthForm: FC = () => {
         title: 'Check Your Email',
         description: "We've sent a magic link to your email!",
       });
-      redirect('/');
+      push('/');
     } catch (err) {
       toast({
         title: 'Error',

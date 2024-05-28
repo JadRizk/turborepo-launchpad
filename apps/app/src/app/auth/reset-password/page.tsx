@@ -2,29 +2,33 @@
 
 import type { NextPage } from 'next';
 import { Icons, toast } from 'ui';
-import { redirect, useSearchParams } from 'next/navigation';
+import { useRouter, useSearchParams } from 'next/navigation';
 import { useEffect } from 'react';
 import { ResetPasswordForm } from '../../../modules/auth/components/ResetPasswordForm';
 import { signInWithRecoveryToken } from '../actions';
 
 const Page: NextPage = () => {
   const searchParams = useSearchParams();
+  const { push } = useRouter();
   const token = searchParams.get('code');
 
   useEffect(() => {
     const handleCodeAuth = async () => {
-      if (!token) redirect('/');
+      if (!token) {
+        push('/');
+        return;
+      }
 
       const { error } = await signInWithRecoveryToken(token);
 
       if (error) {
         toast({ title: error.message, variant: 'destructive' });
-        redirect('/');
+        push('/');
       }
     };
 
     void handleCodeAuth();
-  }, [token]);
+  }, [push, token]);
 
   return (
     <div className='mx-auto flex w-full flex-col justify-center gap-6 sm:w-[350px]'>

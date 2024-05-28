@@ -1,9 +1,9 @@
 {
   "name": "app",
-  "version": "0.1.1",
+  "version": "0.0.1",
   "private": false,
   "scripts": {
-    "dev": "next dev",
+    "dev": "NODE_OPTIONS='--inspect' next dev",
     "build": "next build",
     "start": "next start",
     "lint": "next lint"

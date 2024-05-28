@@ -3,7 +3,7 @@
 import type { FC } from 'react';
 import { useState } from 'react';
 import { Button, useToast } from 'ui';
-import { redirect } from 'next/navigation';
+import { useRouter } from 'next/navigation';
 import Link from 'next/link';
 import { signInWithEmailAndPassword } from '../../../app/auth/actions';
 import { FormInputField } from '../../../components/form/FormInputField';
@@ -13,6 +13,7 @@ import { loginWithEmailAndPasswordSchema } from '../validations';
 
 const LoginWithEmailAndPasswordAuthForm: FC = () => {
   const [isLoading, setIsLoading] = useState(false);
+  const { push } = useRouter();
   const { toast } = useToast();
 
   const onSubmit = async (formValues: LoginEmailAndPasswordFormValues) => {
@@ -27,7 +28,7 @@ const LoginWithEmailAndPasswordAuthForm: FC = () => {
       }
 
       toast({ title: 'Login successful!' });
-      redirect('/app');
+      push('/app');
     } catch (err) {
       toast({
         title: 'Error',

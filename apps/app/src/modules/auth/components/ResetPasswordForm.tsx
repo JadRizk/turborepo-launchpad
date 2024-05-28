@@ -1,7 +1,7 @@
 import type { FC } from 'react';
 import React, { useState } from 'react';
 import { Button, useToast } from 'ui';
-import { redirect } from 'next/navigation';
+import { useRouter } from 'next/navigation';
 import { updatePassword } from '../../../app/auth/actions';
 import { AppForm } from '../../../components/form/AppForm';
 import type { ResetPasswordFormValues } from '../validations/ResetPasswordSchema';
@@ -10,6 +10,7 @@ import { FormInputField } from '../../../components/form/FormInputField';
 
 export const ResetPasswordForm: FC = () => {
   const [isLoading, setIsLoading] = useState(false);
+  const { push } = useRouter();
   const { toast } = useToast();
 
   const onSubmit = async ({ password }: ResetPasswordFormValues) => {
@@ -29,7 +30,7 @@ export const ResetPasswordForm: FC = () => {
         title: 'Password updated!',
         description: 'Your password has been successfully updated.',
       });
-      redirect('/');
+      push('/');
     } catch (err) {
       toast({
         title: 'Error',
