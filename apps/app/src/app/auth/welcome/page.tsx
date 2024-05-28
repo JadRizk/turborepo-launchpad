@@ -35,7 +35,9 @@ const Page: NextPage = () => {
 
   return (
     <>
-      <ReactConfetti height={window.innerHeight} width={window.innerWidth} />
+      {typeof window !== 'undefined' && window.innerHeight ? (
+        <ReactConfetti height={window.innerHeight} width={window.innerWidth} />
+      ) : null}
       <div className='mx-auto flex w-full flex-col justify-center gap-6 sm:w-[350px]'>
         <div className='flex flex-col gap-y-2 text-center'>
           <Icons.ShieldCheck className='mx-auto h-16 w-16' />

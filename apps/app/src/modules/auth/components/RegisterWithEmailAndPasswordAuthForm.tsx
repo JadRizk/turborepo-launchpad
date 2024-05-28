@@ -3,15 +3,16 @@
 import type { FC } from 'react';
 import { useState } from 'react';
 import { Button, buttonVariants, cn, Icons, useToast } from 'ui';
-import { redirect } from 'next/navigation';
+import { useRouter } from 'next/navigation';
 import { signUpWithEmailAndPassword } from '../../../app/auth/actions';
 import { AppForm } from '../../../components/form/AppForm';
 import { FormInputField } from '../../../components/form/FormInputField';
-import type { RegisterEmailAndPasswordFormValues } from '../validations/RegisterWithEmailAndPasswordSchema';
-import { registerWithEmailAndPasswordSchema } from '../validations/RegisterWithEmailAndPasswordSchema';
+import type { RegisterEmailAndPasswordFormValues } from '../validations';
+import { registerWithEmailAndPasswordSchema } from '../validations';
 
 export const RegisterWithEmailAndPasswordAuthForm: FC = () => {
   const [isLoading, setIsLoading] = useState(false);
+  const { push } = useRouter();
   const { toast } = useToast();
 
   const onSubmit = async ({
@@ -29,7 +30,7 @@ export const RegisterWithEmailAndPasswordAuthForm: FC = () => {
       }
 
       toast({ title: 'User created!' });
-      redirect('/auth/login');
+      push('/auth/login');
     } catch (err) {
       toast({
         title: 'Error',

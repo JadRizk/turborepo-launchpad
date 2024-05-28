@@ -7,8 +7,15 @@
 ![Turborepo Badge](https://img.shields.io/badge/Turborepo-EF4444?logo=turborepo&logoColor=fff&style=flat)
 ![Tailwind CSS Badge](https://img.shields.io/badge/Tailwind%20CSS-06B6D4?logo=tailwindcss&logoColor=fff&style=flat)
 ![TypeScript Badge](https://img.shields.io/badge/TypeScript-3178C6?logo=typescript&logoColor=fff&style=flat)
+![Next.js](https://img.shields.io/badge/Next.js-black?logo=next.js&logoColor=white)
+![Supabase](https://img.shields.io/badge/Supabase-3FCF8E?logo=supabase&logoColor=fff)
+![Storybook](https://img.shields.io/badge/Storybook-FF4785?logo=storybook&logoColor=fff)
+![shadcn/ui](https://img.shields.io/badge/shadcn%2Fui-000?logo=shadcnui&logoColor=fff)
 ![ESLint Badge](https://img.shields.io/badge/ESLint-4B32C3?logo=eslint&logoColor=fff&style=flat)
 ![Prettier Badge](https://img.shields.io/badge/Prettier-F7B93E?logo=prettier&logoColor=fff&style=flat)
+![pnpm](https://img.shields.io/badge/pnpm-F69220?logo=pnpm&logoColor=fff)
+![GitHub Actions](https://img.shields.io/badge/GitHub_Actions-2088FF?logo=github-actions&logoColor=white)
+![Vercel](https://img.shields.io/badge/Vercel-%23000000.svg?logo=vercel&logoColor=white)
 
 ---
 
@@ -24,6 +31,11 @@ library to enhance your development workflow.
   - [Useful Commands](#useful-commands)
 - [📦 Apps & Packages](#-apps--packages)
 - [🛠 Tools Powering This Repository](#-tools-powering-this-repository)
+- [🧑‍💻 Setting Up Supabase Locally](#-setting-up-supabase-locally)
+  - [Prerequisites](#prerequisites)
+  - [Installation](#installation-1)
+  - [Configuration](#configuration)
+  - [Useful Commands](#useful-commands-1)
 - [🧱 Components](#-components)
 - [📚 Storybook Integration](#-storybook-integration)
   - [Instant Bundling with Vite](#instant-bundling-with-vite)
@@ -59,8 +71,8 @@ for Supabase authentication. Create a .env.local file at the root of your
 project and include the following:
 
 ```sh
-NEXT_PUBLIC_SUPABASE_URL=your_supabase_url
-NEXT_PUBLIC_SUPABASE_ANON_KEY=your_supabase_anon_key
+SUPABASE_URL=your_supabase_url
+SUPABASE_ANON_KEY=your_supabase_anon_key
 ```
 
 For more information on setting up Supabase, visit the
@@ -136,6 +148,80 @@ dependencies that are shared between packages to the root `package.json`. This
 means smaller `node_modules` folders and a better local dev experience. To
 install a dependency for the entire monorepo, use the `-w` workspaces flag with
 `pnpm add`.
+
+## 🧑‍💻 Setting Up Supabase Locally
+
+Setting up Supabase locally can significantly streamline your development
+workflow. Follow these steps to get started with Supabase CLI for local
+development:
+
+### Prerequisites
+
+Ensure you have Docker installed on your machine, as Supabase relies on Docker
+containers to run the local development environment.
+
+### Installation
+
+1. **Install Supabase CLI**: First, install the Supabase CLI by running the
+   following command:
+
+```sh
+# Install Supabase CLI
+npm install -g supabase
+```
+
+2. **Start Supabase**: Navigate to your project's root directory and initialize
+   Supabase:
+
+```sh
+# Initialize Supabase in your project
+supabase init
+```
+
+3. **Start the Supabase local development environment**: Run the following
+   command to start the local Supabase environment:
+
+```sh
+# Start Supabase local environment
+supabase start
+```
+
+This command will spin up the necessary Docker containers for Supabase,
+including the database, authentication, and storage services.
+
+### Configuration
+
+1. **Configure Environment Variables**: Update your `.env.local` file to use the
+   local Supabase instance. Replace `your_supabase_url` and
+   `your_supabase_anon_key` with the values provided by the local Supabase
+   environment:
+
+```sh
+NEXT_PUBLIC_SUPABASE_URL=http://localhost:54321
+NEXT_PUBLIC_SUPABASE_ANON_KEY=your_local_anon_key
+```
+
+2. **Migrate Database**: To apply database migrations, use the following
+   command:
+
+```sh
+# Apply database migrations
+supabase db push
+```
+
+This command ensures your local database schema matches your project
+requirements.
+
+### Useful Commands
+
+- `supabase start` - Start the local Supabase development environment.
+- `supabase stop` - Stop the local Supabase environment.
+- `supabase db push` - Apply database migrations.
+- `supabase db reset` - Reset the local database to its initial state.
+
+For more detailed information on setting up and using Supabase locally, visit
+the
+[Supabase CLI Local Development Guide](https://supabase.com/docs/guides/cli/local-development).
 
 ## 🧱 Components
 

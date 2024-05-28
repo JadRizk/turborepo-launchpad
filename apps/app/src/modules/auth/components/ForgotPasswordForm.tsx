@@ -3,7 +3,7 @@
 import type { FC } from 'react';
 import { useState } from 'react';
 import { Button, useToast } from 'ui';
-import { redirect } from 'next/navigation';
+import { useRouter } from 'next/navigation';
 import { resetPasswordForEmail } from '../../../app/auth/actions';
 import { AppForm } from '../../../components/form/AppForm';
 import type { EmailFormValues } from '../validations';
@@ -12,6 +12,7 @@ import { FormInputField } from '../../../components/form/FormInputField';
 
 export const ForgotPasswordForm: FC = () => {
   const [isLoading, setIsLoading] = useState(false);
+  const { push } = useRouter();
   const { toast } = useToast();
 
   const onSubmit = async ({ email }: EmailFormValues) => {
@@ -30,7 +31,7 @@ export const ForgotPasswordForm: FC = () => {
         description:
           "We've sent a password reset link to your email. Please click the link to set a new password.",
       });
-      redirect('/auth/login');
+      push('/auth/login');
     } catch (err) {
       toast({
         title: 'Error',
