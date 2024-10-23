@@ -4,6 +4,7 @@ import type { FC } from 'react';
 import { useState } from 'react';
 import { Button, useToast } from 'ui';
 import { z } from 'zod';
+import type { User } from '@supabase/auth-helpers-nextjs';
 import { AppForm } from '../../../components/form/AppForm';
 import { FormInputField } from '../../../components/form/FormInputField';
 import { updateUser } from '../actions';
@@ -22,10 +23,9 @@ const updateUserFormSchema = z.object({
 
 type UpdateUserFormValues = z.infer<typeof updateUserFormSchema>;
 
-export const UpdateUserForm: FC = () => {
+export const UpdateUserForm: FC<{user: User | undefined}> = ({user} ) => {
   const [isLoading, setIsLoading] = useState(false);
   const { toast } = useToast();
-
   const onSubmit = async (data: UpdateUserFormValues) => {
     setIsLoading(true);
 
@@ -50,9 +50,9 @@ export const UpdateUserForm: FC = () => {
   };
 
   return (
-    <AppForm onSubmit={onSubmit} schema={updateUserFormSchema}>
+    <AppForm defaultValues={{phone: user?.phone}} onSubmit={onSubmit} schema={updateUserFormSchema}>
       <div className='flex flex-col gap-4'>
-        <FormInputField label='Phone' path='phone' />
+        <FormInputField label='Phone' path='phone'  />
         <div>
           <Button disabled={isLoading} type='submit'>
             Save

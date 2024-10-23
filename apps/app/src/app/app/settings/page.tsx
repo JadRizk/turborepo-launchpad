@@ -1,8 +1,10 @@
-import type { NextPage } from 'next';
 import { Separator } from 'ui/src/components/ui/separator';
 import { UpdateUserForm } from '../../../modules/auth/components/UpdateUserForm';
+import { getCurrentUser } from '../actions/user';
 
-const SettingsPage: NextPage = () => {
+const SettingsPage = async () => {
+  const user = await getCurrentUser();
+  
   return (
     <div className='space-y-6'>
       <div>
@@ -12,7 +14,7 @@ const SettingsPage: NextPage = () => {
         </p>
       </div>
       <Separator />
-      <UpdateUserForm />
+      <UpdateUserForm user={user}/>
     </div>
   );
 };
