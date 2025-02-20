@@ -6,6 +6,7 @@
   "license": "MIT",
   "scripts": {
     "lint": "eslint .",
+    "generate:tokens": "node generate-tokens.js",
     "generate:component": "turbo gen react-component"
   },
   "devDependencies": {

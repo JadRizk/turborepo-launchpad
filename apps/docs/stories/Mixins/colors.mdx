@@ -1,0 +1,42 @@
+import { Meta, ColorPalette, ColorItem } from '@storybook/blocks';
+import { customColors, tailwindColors } from '../../tokens';
+
+<Meta title='Colors' />
+
+# Colors
+
+This story displays the color palette for the design tokens.
+
+## Custom colors
+
+<ColorPalette>
+  {Object.entries(customColors).map(([colorName, colorValue]) => (
+    <ColorItem
+      colors={
+        typeof colorValue === 'string'
+          ? [colorValue]
+          : Object.values(colorValue)
+      }
+      key={colorName}
+      subtitle={typeof colorValue === 'string' ? undefined : 'Shades'}
+      title={colorName}
+    />
+  ))}
+</ColorPalette>
+
+## Tailwind Colors
+
+<ColorPalette>
+  {Object.entries(tailwindColors).map(([colorName, colorValue]) => (
+    <ColorItem
+      colors={
+        typeof colorValue === 'string'
+          ? [colorValue]
+          : Object.values(colorValue)
+      }
+      key={colorName}
+      subtitle={typeof colorValue === 'string' ? undefined : 'Shades'}
+      title={colorName}
+    />
+  ))}
+</ColorPalette>

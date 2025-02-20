@@ -1,0 +1,66 @@
+import { Meta } from '@storybook/blocks';
+import { spacing } from '../../tokens.ts';
+
+<Meta title='Spacing' />
+
+# Spacing Tokens
+
+This story displays the spacing tokens defined in your Tailwind configuration.
+Each token is listed with its name, size, pixel value, and a visual preview.
+
+## Table of Spacing Tokens
+
+<table
+  style={{
+    width: '100%',
+    borderCollapse: 'collapse',
+    textAlign: 'left',
+    fontSize: '14px',
+  }}
+>
+  <thead
+    style={{
+      backgroundColor: '#f9f9f9',
+      textTransform: 'uppercase',
+      fontSize: '12px',
+      borderBottom: '1px solid #ddd',
+    }}
+  >
+    <tr>
+      <th style={{ padding: '8px' }}>Name</th>
+      <th style={{ padding: '8px' }}>Size</th>
+      <th style={{ padding: '8px' }}>Pixels</th>
+      <th style={{ padding: '8px' }}>Preview</th>
+    </tr>
+  </thead>
+  <tbody>
+    {Object.entries(spacing).map(([key, value]) => {
+      const pixels =
+        parseFloat(value) * (String(value).endsWith('rem') ? 16 : 1);
+      return (
+        <tr key={key} style={{ borderBottom: '1px solid #ddd' }}>
+          <td style={{ padding: '8px' }}>{key}</td>
+          <td style={{ padding: '8px' }}>{value}</td>
+          <td style={{ padding: '8px' }}>{pixels}px</td>
+          <td style={{ padding: '8px' }}>
+            <div
+              style={{
+                border: '1px solid #ddd',
+                backgroundColor: '#f0f0f0',
+                height: '16px',
+              }}
+            >
+              <div
+                style={{
+                  backgroundColor: 'hsl(238.46deg 31.71% 48.24%)',
+                  width: value,
+                  height: '100%',
+                }}
+              />
+            </div>
+          </td>
+        </tr>
+      );
+    })}
+  </tbody>
+</table>

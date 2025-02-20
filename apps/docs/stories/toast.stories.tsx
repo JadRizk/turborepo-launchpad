@@ -1,14 +1,13 @@
 import type { Meta, StoryObj } from '@storybook/react';
+import type { FC } from 'react';
 import type { ToastProps } from 'ui';
 import { Button, Toast, Toaster, useToast } from 'ui';
-import type { FC } from 'react';
-import React from 'react';
 
 export default {
   title: 'Components/Toast',
   component: Toast,
   parameters: {
-    layout: 'padded',
+    layout: 'centered',
   },
   argTypes: {
     title: {
@@ -23,9 +22,9 @@ export default {
   },
 } as Meta<typeof Toast>;
 
-type ToastStory = StoryObj<React.ComponentProps<typeof Toast>>;
+type ToastStory = StoryObj<typeof Toast>;
 
-export const DefaultToast: FC<ToastProps> = ({ title, variant }) => {
+const DefaultToast: FC<ToastProps> = ({ title, variant }) => {
   const { toast } = useToast();
 
   return (
