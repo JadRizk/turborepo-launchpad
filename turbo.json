@@ -1,17 +1,10 @@
 {
   "$schema": "https://turbo.build/schema.json",
-  "globalDependencies": [
-    "**/.env.*local"
-  ],
+  "globalDependencies": ["**/.env.*local"],
   "tasks": {
     "build": {
-      "dependsOn": [
-        "^build"
-      ],
-      "outputs": [
-        ".next/**",
-        "!.next/cache/**"
-      ]
+      "dependsOn": ["^build"],
+      "outputs": [".next/**", "!.next/cache/**"]
     },
     "lint": {},
     "dev": {
@@ -19,17 +12,9 @@
       "persistent": true
     },
     "app#build": {
-      "dependsOn": [
-        "^build"
-      ],
-      "env": [
-        "NEXT_APP_URL",
-        "SUPABASE_URL",
-        "SUPABASE_ANON_KEY"
-      ],
-      "outputs": [
-        ".next/**"
-      ]
+      "dependsOn": ["^build"],
+      "env": ["NEXT_APP_URL", "SUPABASE_URL", "SUPABASE_ANON_KEY"],
+      "outputs": [".next/**"]
     }
   }
 }
