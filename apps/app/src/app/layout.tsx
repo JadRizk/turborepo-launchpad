@@ -4,6 +4,7 @@ import 'ui/styles/globals.css';
 import React from 'react';
 import { Toaster } from 'ui';
 import { ThemeProvider } from '../components/layouts/ThemeProvider';
+import Script from 'next/script';
 
 const inter = Oswald({ subsets: ['latin'] });
 
@@ -33,6 +34,11 @@ const RootLayout = ({ children }: { children: React.ReactNode }) => (
         <Toaster />
       </ThemeProvider>
     </body>
+    <Script
+      async
+      src='https://cloud.umami.is/script.js'
+      data-website-id={process.env.UMAMI_WEBSITE_ID}
+    />
   </html>
 );
 
