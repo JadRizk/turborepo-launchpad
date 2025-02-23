@@ -1,5 +1,16 @@
 # app
 
+## 0.0.3
+
+### Patch Changes
+
+- [`f577fdc`](https://github.com/JadRizk/turborepo-launchpad/commit/f577fdcd5ab04413456ae1885cce8c0577a0a6e3)
+  Thanks [@JadRizk](https://github.com/JadRizk)! - Refactor landing page
+
+- Updated dependencies
+  [[`f577fdc`](https://github.com/JadRizk/turborepo-launchpad/commit/f577fdcd5ab04413456ae1885cce8c0577a0a6e3)]:
+  - ui@0.0.2
+
 ## 0.0.2
 
 ### Patch Changes
