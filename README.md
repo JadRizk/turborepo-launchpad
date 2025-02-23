@@ -26,27 +26,22 @@ streamline the development of scalable and secure web applications,
 **Launchpad** offers a robust suite of tools and a customizable UI component
 library to enhance your development workflow.
 
-- [🚀 Getting Started](#-getting-started)
-  - [Installation](#installation)
-  - [Useful Commands](#useful-commands)
-- [📦 Apps & Packages](#-apps--packages)
-- [🛠 Tools Powering This Repository](#-tools-powering-this-repository)
-- [🧑‍💻 Setting Up Supabase Locally](#-setting-up-supabase-locally)
-  - [Prerequisites](#prerequisites)
-  - [Installation](#installation-1)
-  - [Configuration](#configuration)
-  - [Useful Commands](#useful-commands-1)
-- [🧱 Components](#-components)
-- [📚 Storybook Integration](#-storybook-integration)
-  - [Instant Bundling with Vite](#instant-bundling-with-vite)
-  - [Automatic Story Detection](#automatic-story-detection)
-  - [Module Path Aliases](#module-path-aliases)
-  - [MDX Support for Documentation](#mdx-support-for-documentation)
-- [🔄 Versioning & Publishing Packages](#-versioning--publishing-packages)
-  - [Generating Changesets](#generating-changesets)
-  - [Triggering a Release](#triggering-a-release)
-  - [Important Notes](#important-notes)
-- [📚 Further Documentation and Resources](#-further-documentation-and-resources)
+- [Launchpad](#launchpad)
+  - [🚀 Getting Started](#-getting-started)
+    - [Installation](#installation)
+    - [Environment Setup](#environment-setup)
+    - [Useful Commands](#useful-commands)
+  - [📦 Apps \& Packages](#-apps--packages)
+  - [🛠 Tools Powering This Repository](#-tools-powering-this-repository)
+  - [🧑‍💻 Setting Up Supabase Locally](#-setting-up-supabase-locally)
+    - [Prerequisites](#prerequisites)
+    - [Installation](#installation-1)
+    - [Configuration](#configuration)
+    - [Useful Commands](#useful-commands-1)
+  - [🧱 Components](#-components)
+  - [🔄 Versioning \& Publishing Packages](#-versioning--publishing-packages)
+    - [🔧 Generating Changesets](#-generating-changesets)
+  - [📚 Further Documentation and Resources](#-further-documentation-and-resources)
 
 ## 🚀 Getting Started
 
@@ -67,12 +62,14 @@ pnpm install
 ### Environment Setup
 
 Before you start the application, you must configure the environment variables
-for Supabase authentication. Create a .env.local file at the root of your
-project and include the following:
+for Supabase authentication and Umami analytics. Create a .env.local file at the
+root of your project and include the following:
 
 ```sh
 SUPABASE_URL=your_supabase_url
 SUPABASE_ANON_KEY=your_supabase_anon_key
+
+UMAMI_SCRIPT_URL=your_umami_script_url
 ```
 
 For more information on setting up Supabase, visit the
@@ -141,6 +138,9 @@ productivity and maintain high standards across the development lifecycle:
 - ⚙️ [**GitHub Actions**](https://github.com/features/actions) — Automates
   workflows for continuous integration and deployment, enhancing development
   pipelines.
+- 📊 [**Umami Analytics**](https://umami.is/) — A simple, privacy-focused
+  alternative to Google Analytics, providing insights into user interactions
+  without compromising privacy.
 
 **Note**: Each package and app is 100%
 [TypeScript](https://www.typescriptlang.org/). Workspaces enables us to "hoist"
