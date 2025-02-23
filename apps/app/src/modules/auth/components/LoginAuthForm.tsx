@@ -30,7 +30,7 @@ export const LoginAuthFormLoading: FC = () => {
 
 export const LoginAuthForm: FC = () => {
   const [currentForm, setCurrentForm] = useState<AuthFormType>(
-    AuthFormType.MagicLink,
+    AuthFormType.EmailAndPassword,
   );
 
   const isMagicLinkForm = currentForm === AuthFormType.MagicLink;
