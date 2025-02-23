@@ -8,6 +8,7 @@ import type { User } from '@supabase/auth-helpers-nextjs';
 import { AppForm } from '../../../components/form/AppForm';
 import { FormInputField } from '../../../components/form/FormInputField';
 import { updateUser } from '../actions';
+import { format } from 'date-fns';
 
 const updateUserFormSchema = z.object({
   phone: z
@@ -23,7 +24,7 @@ const updateUserFormSchema = z.object({
 
 type UpdateUserFormValues = z.infer<typeof updateUserFormSchema>;
 
-export const UpdateUserForm: FC<{user: User | undefined}> = ({user} ) => {
+export const UpdateUserForm: FC<{ user: User | undefined }> = ({ user }) => {
   const [isLoading, setIsLoading] = useState(false);
   const { toast } = useToast();
   const onSubmit = async (data: UpdateUserFormValues) => {
@@ -50,14 +51,37 @@ export const UpdateUserForm: FC<{user: User | undefined}> = ({user} ) => {
   };
 
   return (
-    <AppForm defaultValues={{phone: user?.phone}} onSubmit={onSubmit} schema={updateUserFormSchema}>
-      <div className='flex flex-col gap-4'>
-        <FormInputField label='Phone' path='phone'  />
-        <div>
-          <Button disabled={isLoading} type='submit'>
-            Save
-          </Button>
-        </div>
+    <AppForm
+      defaultValues={{ phone: user?.phone || '' }}
+      onSubmit={onSubmit}
+      schema={updateUserFormSchema}
+    >
+      <div className='flex flex-col gap-6 max-w-sm'>
+        <FormInputField
+          label='Email'
+          path='email'
+          defaultValue={user?.email || ''}
+          readOnly
+          disabled
+        />
+
+        <FormInputField label='Phone' path='phone' />
+
+        <FormInputField
+          label='Account Created'
+          path='created_at'
+          defaultValue={
+            user?.created_at
+              ? format(new Date(user.created_at), 'PPP p')
+              : 'N/A'
+          }
+          readOnly
+          disabled
+        />
+
+        <Button className='w-full' disabled={isLoading} type='submit'>
+          {isLoading ? 'Updating...' : 'Save'}
+        </Button>
       </div>
     </AppForm>
   );

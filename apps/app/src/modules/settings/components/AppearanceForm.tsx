@@ -1,12 +1,15 @@
 'use client';
 
+import { useState } from 'react';
 import { z } from 'zod';
-import { Button, toast } from 'ui';
+import { Button, useToast } from 'ui';
 import type { FC } from 'react';
+import { useTheme } from 'next-themes';
 import { AppForm } from '../../../components/form/AppForm';
+import { FormSelectField } from '../../../components/form/FormSelectField';
 
 const appearanceFormSchema = z.object({
-  theme: z.enum(['light', 'dark'], {
+  theme: z.enum(['light', 'dark', 'system'], {
     required_error: 'Please select a theme.',
   }),
 });
@@ -14,23 +17,52 @@ const appearanceFormSchema = z.object({
 type AppearanceFormValues = z.infer<typeof appearanceFormSchema>;
 
 export const AppearanceForm: FC = () => {
-  function onSubmit(data: AppearanceFormValues) {
-    toast({
-      title: 'You submitted the following values:',
-      description: (
-        <pre className='mt-2 w-[340px] rounded-md bg-slate-950 p-4'>
-          <code className='text-white'>{JSON.stringify(data, null, 2)}</code>
-        </pre>
-      ),
-    });
-  }
+  const { theme, setTheme } = useTheme();
+  const [isLoading, setIsLoading] = useState(false);
+  const { toast } = useToast();
+
+  const onSubmit = async (data: AppearanceFormValues) => {
+    setIsLoading(true);
+    try {
+      setTheme(data.theme);
+
+      toast({
+        title: 'Preferences updated!',
+        description: `Theme set to ${data.theme}.`,
+      });
+    } catch (err) {
+      toast({
+        title: 'Error',
+        description: 'Failed to update theme. Please try again.',
+        variant: 'destructive',
+      });
+    } finally {
+      setIsLoading(false);
+    }
+  };
 
   return (
-    <AppForm onSubmit={onSubmit} schema={appearanceFormSchema}>
-      <div className='flex flex-col'>Hello</div>
-      <Button type='submit' variant='primary'>
-        Update preferences
-      </Button>
+    <AppForm
+      defaultValues={{ theme: theme as AppearanceFormValues['theme'] }}
+      onSubmit={onSubmit}
+      schema={appearanceFormSchema}
+    >
+      <div className='flex flex-col gap-4 w-56'>
+        <FormSelectField
+          label='Theme'
+          path='theme'
+          options={[
+            { label: 'Light', value: 'light' },
+            { label: 'Dark', value: 'dark' },
+            { label: 'System', value: 'system' },
+          ]}
+        />
+        <div>
+          <Button disabled={isLoading} type='submit'>
+            {isLoading ? 'Updating...' : 'Update Preferences'}
+          </Button>
+        </div>
+      </div>
     </AppForm>
   );
 };

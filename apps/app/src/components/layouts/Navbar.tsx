@@ -30,10 +30,7 @@ export const NavBar: FC<NavbarProps> = () => {
         </a>
 
         <div className='hidden md:flex space-x-6 items-center'>
-          <Button
-            className={cn(buttonVariants({ size: 'sm' }), 'px-4')}
-            onClick={onLoginClick}
-          >
+          <Button className={cn('px-4')} onClick={onLoginClick}>
             Login
           </Button>
         </div>

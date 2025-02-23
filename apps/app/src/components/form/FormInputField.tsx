@@ -6,7 +6,7 @@ import { FormFieldset } from './FormFieldset';
 
 export type FormInputFieldProps<T> = Omit<
   InputProps,
-  'id' | 'name' | 'invalid' | 'readOnly'
+  'id' | 'name' | 'invalid'
 > & {
   path: Path<T>;
   label?: string;

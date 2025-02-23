@@ -15,11 +15,11 @@ export function SidebarNav({ items }: SidebarNavProps) {
   const pathname = usePathname();
 
   return (
-    <nav className='flex space-x-2 md:flex-col md:space-x-0 md:space-y-1'>
+    <nav className='flex gap-2 sm:flex-col'>
       {items.map(item => (
         <Link
           className={cn(
-            buttonVariants({ variant: 'ghost' }),
+            buttonVariants({ variant: 'link' }),
             pathname === item.href
               ? 'bg-muted hover:bg-muted'
               : 'hover:bg-transparent hover:underline',

@@ -1,12 +1,17 @@
-import type { NextPage } from 'next';
+import { Suspense } from 'react';
+import { UserWelcomeCard } from '../../modules/dashboard/components/UserWelcomeCard';
+import { getCurrentUser } from './actions/user';
+import { Skeleton } from 'ui';
 
-const Page: NextPage = () => {
+const Page = async () => {
+  const user = await getCurrentUser();
+
   return (
-    <section className='space-y-6 pb-8 pt-6 md:pb-12 md:pt-10 lg:py-32'>
+    <section className='space-y-3 pb-4 pt-3 md:pb-5 md:pt-5 lg:py-24'>
       <div className='container flex max-w-[64rem] flex-col items-center gap-4 text-center'>
-        <h1 className='font-heading text-3xl sm:text-5xl md:text-6xl lg:text-7xl'>
-          Protected Landing Page
-        </h1>
+        <Suspense fallback={<Skeleton className='w-[350px] h-[150px]' />}>
+          <UserWelcomeCard user={user} />
+        </Suspense>
       </div>
     </section>
   );

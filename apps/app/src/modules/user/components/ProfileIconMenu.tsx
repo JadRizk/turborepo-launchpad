@@ -24,8 +24,7 @@ export const ProfileIconMenu: FC = () => {
     <DropdownMenu>
       <DropdownMenuTrigger asChild>
         <Button size='icon' variant='outline'>
-          <Icons.User className='absolute h-[1.2rem] w-[1.2rem] rotate-90 scale-0 transition-all dark:rotate-0 dark:scale-100' />
-          <span className='sr-only'>Profile menu toggle</span>
+          <Icons.User />
         </Button>
       </DropdownMenuTrigger>
       <DropdownMenuContent className='w-56'>
